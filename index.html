@@ -611,6 +611,14 @@
       background: var(--paper);
     }
 
+    .ig-block-home {
+      margin: 20px 0 32px;
+    }
+
+    .ig-block-head .ig-follow {
+      flex-shrink: 0;
+    }
+
     .ig-block-head {
       display: flex;
       flex-wrap: wrap;
@@ -800,7 +808,7 @@
     body.is-cut #cut-status { display: block; }
     body.is-beauty-cut #beauty-cut-status,
     .aisle-types.is-filtering .cut-status { display: block; }
-    body.is-cut .ig-block,
+    body.is-cut .ig-block:not(.ig-block-home),
     body.is-cut .cat-tiles,
     body.is-cut .aisle-note { display: none; }
     .card.is-hidden,
@@ -850,6 +858,7 @@
       <a href="#sleep">Sleep/Home</a>
       <a href="#specialty">Specialty</a>
       <a href="/grocery/">Grocery</a>
+      <a href="#instagram">Instagram</a>
     </nav>
 
     <section class="shop-by" id="aisles">
@@ -886,6 +895,57 @@
       </div>
     </section>
     <p class="shop-promise">You do not have to check the ingredients or whether it is fairly made. We already did. Real organic. No greenwash.</p>
+
+    <div class="ig-block ig-block-home" id="instagram">
+      <div class="ig-block-head">
+        <div>
+          <h3>EKOTOPIA on Instagram</h3>
+          <p>Official shop photos — clothes, baby, and home. Follow <a href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">@ekotopia.co</a>.</p>
+        </div>
+        <a class="ig-follow" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>
+          <span>Follow @ekotopia.co</span>
+        </a>
+      </div>
+      <div class="ig-grid" aria-label="EKOTOPIA shop photos — follow on Instagram">
+        <a class="ig-tile" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <img src="img/wear/casagin/classic-tank.jpg" alt="Classic tank top in natural fabric" width="600" height="600" loading="lazy">
+          <span>Classic tank top in natural fabric</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <img src="img/wear/nomads/daisy-dress.jpg" alt="Daisy Dress (Hemp Lyocell)" width="600" height="600" loading="lazy">
+          <span>Daisy Dress (Hemp Lyocell)</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <img src="img/wear/royal-hemp/hemp-baby-socks.jpg" alt="Hemp Baby Socks" width="600" height="600" loading="lazy">
+          <span>Hemp Baby Socks</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <img src="img/wear/casagin/leggings.jpg" alt="TENCEL Leggings" width="600" height="600" loading="lazy">
+          <span>TENCEL Leggings</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <img src="img/wear/nomads/elektra-dress.jpg" alt="Elektra Dress (bamboo + organic cotton Melange)" width="600" height="600" loading="lazy">
+          <span>Elektra Dress (bamboo + organic cotton Melange)</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <img src="img/wear/rawganique/sonoma-v2-natural.jpg" alt="SONOMA 100% Organic Cotton Crewneck T-Shirt" width="600" height="600" loading="lazy">
+          <span>SONOMA 100% Organic Cotton Crewneck T-Shirt</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <img src="img/baby/bbb-wild-floral-bodysuits.jpg" alt="Wild Floral Organic Cotton Bodysuits 2 Pack" width="600" height="600" loading="lazy">
+          <span>Wild Floral Organic Cotton Bodysuits</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <img src="img/home/coyuchi-cloud-loom-towels.jpg" alt="Cloud Loom Organic Towels" width="600" height="600" loading="lazy">
+          <span>Cloud Loom Organic Towels</span>
+        </a>
+        <a class="ig-tile" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <img src="img/sleep/coyuchi-crinkled-percale-sheet-set.jpg" alt="Organic Crinkled Percale Sheet Set" width="600" height="600" loading="lazy">
+          <span>Organic Crinkled Percale Sheet Set</span>
+        </a>
+      </div>
+    </div>
 
     <section class="specialty" id="specialty">
       <h2>Specialty</h2>
@@ -1130,12 +1190,16 @@
         <p class="cut-status" id="clothes-cut-status"></p>
       </div>
 
-      <div class="ig-block" id="instagram">
+      <div class="ig-block" id="instagram-wear">
         <div class="ig-block-head">
           <div>
             <h3>EKOTOPIA on Instagram</h3>
             <p>Official Wear photos — adult clothes plus the baby socks on the aisle. Follow <a href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">@ekotopia.co</a> for organic clothes, baby clothes, and baby bedding.</p>
           </div>
+          <a class="ig-follow" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>
+            <span>Follow @ekotopia.co</span>
+          </a>
         </div>
         <div class="ig-grid" aria-label="EKOTOPIA Wear photos from the catalog">
           <a class="ig-tile" href="#classic-tank">
