@@ -737,10 +737,13 @@
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
+      max-width: 100%;
+      overflow: visible;
     }
 
     .cut-btn,
-    .beauty-cut-btn {
+    .beauty-cut-btn,
+    .type-cut-btn {
       appearance: none;
       border: 1px solid var(--line);
       background: #f7f2e8;
@@ -755,12 +758,15 @@
     .cut-btn:hover,
     .cut-btn:focus-visible,
     .beauty-cut-btn:hover,
-    .beauty-cut-btn:focus-visible {
+    .beauty-cut-btn:focus-visible,
+    .type-cut-btn:hover,
+    .type-cut-btn:focus-visible {
       border-color: var(--olive);
     }
 
     .cut-btn.is-on,
-    .beauty-cut-btn.is-on {
+    .beauty-cut-btn.is-on,
+    .type-cut-btn.is-on {
       background: #e4ead4;
       border-color: var(--olive);
       color: var(--olive-deep);
@@ -791,8 +797,9 @@
       font-size: 0.88rem;
     }
 
-    body.is-cut .cut-status { display: block; }
-    body.is-beauty-cut #beauty-cut-status { display: block; }
+    body.is-cut #cut-status { display: block; }
+    body.is-beauty-cut #beauty-cut-status,
+    .aisle-types.is-filtering .cut-status { display: block; }
     body.is-cut .ig-block,
     body.is-cut .cat-tiles,
     body.is-cut .aisle-note { display: none; }
@@ -804,7 +811,15 @@
     .card.is-beauty-hidden,
     .brand-line.is-beauty-hidden,
     .grid.is-beauty-hidden,
-    .beauty-shell.is-beauty-hidden { display: none; }
+    .beauty-shell.is-beauty-hidden,
+    .card.is-type-hidden,
+    .brand-line.is-type-hidden,
+    .grid.is-type-hidden,
+    .beauty-shell.is-type-hidden,
+    .type-shell.is-type-hidden,
+    .ig-block.is-type-hidden,
+    .aisle-note.is-type-hidden,
+    .aisle.is-type-hidden { display: none; }
   </style>
 </head>
 <body>
@@ -1099,6 +1114,22 @@
         </div>
         <p>Organic fashion from all brands all over the world. Accepted wholesale catalogs with pictures — Italy, Canada, Nepal, Santa Cruz. Catalog + inquire — no checkout, no prices.</p>
       </div>
+      <div class="aisle-types cut-group" data-aisle-types="clothes">
+        <p class="cut-label">Shop by type</p>
+        <div class="cut-row">
+          <button type="button" class="type-cut-btn" data-aisle-type="clothes" data-type="">All</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="clothes" data-type="tops">Tops</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="clothes" data-type="dresses">Dresses</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="clothes" data-type="bottoms">Bottoms</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="clothes" data-type="underwear">Underwear + bras</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="clothes" data-type="lounge">Lounge + nightwear</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="clothes" data-type="socks">Socks</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="clothes" data-type="shoes">Shoes</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="clothes" data-type="outerwear">Outerwear</button>
+        </div>
+        <p class="cut-status" id="clothes-cut-status"></p>
+      </div>
+
       <div class="ig-block" id="instagram">
         <div class="ig-block-head">
           <div>
@@ -1150,7 +1181,7 @@
         <p>Italian sustainable underwear and loungewear in TENCEL Modal. Wholesale catalog — accepted retailer. Retailer account created by Alberto for powerplantog@gmail.com.</p>
       </div>
       <div class="grid">
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/casagin/classic-briefs.jpg" alt="Classic briefs in natural fabric" width="600" height="800" loading="lazy">
           </div>
@@ -1161,7 +1192,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Classic%20briefs%20in%20natural%20fabric">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/casagin/boxer-natural.jpg" alt="Natural fabric boxer shorts" width="600" height="800" loading="lazy">
           </div>
@@ -1172,7 +1203,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Natural%20fabric%20boxer%20shorts">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/casagin/mens-boxer-tencel.jpg" alt="Men&#x27;s Boxer Shorts in TENCEL" width="600" height="800" loading="lazy">
           </div>
@@ -1183,7 +1214,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Men%27s%20Boxer%20Shorts%20in%20TENCEL">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/casagin/mens-briefs.jpg" alt="Men&#x27;s TENCEL briefs" width="600" height="800" loading="lazy">
           </div>
@@ -1194,7 +1225,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Men%27s%20TENCEL%20briefs">Inquire</a>
           </div>
         </article>
-        <article class="card" id="classic-tank">
+        <article class="card" id="classic-tank" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/casagin/classic-tank.jpg" alt="Classic tank top in natural fabric" width="600" height="800" loading="lazy">
           </div>
@@ -1205,7 +1236,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Classic%20tank%20top%20in%20natural%20fabric">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/casagin/fine-strap-tank.jpg" alt="Thin-strap tank top in TENCEL" width="600" height="800" loading="lazy">
           </div>
@@ -1216,7 +1247,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Thin-strap%20tank%20top%20in%20TENCEL">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/casagin/bralette.jpg" alt="Natural fabric bralette" width="600" height="800" loading="lazy">
           </div>
@@ -1227,7 +1258,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Natural%20fabric%20bralette">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/casagin/bandeau.jpg" alt="TENCEL Bandeau Bra" width="600" height="800" loading="lazy">
           </div>
@@ -1238,7 +1269,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20TENCEL%20Bandeau%20Bra">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/casagin/cup-bra.jpg" alt="Bra with cup without elastic in TENCEL" width="600" height="800" loading="lazy">
           </div>
@@ -1249,7 +1280,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Bra%20with%20cup%20without%20elastic%20in%20TENCEL">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/casagin/padded-bralette.jpg" alt="Padded bralette in natural fabric" width="600" height="800" loading="lazy">
           </div>
@@ -1260,7 +1291,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Padded%20bralette%20in%20natural%20fabric">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/casagin/culotte-lace.jpg" alt="Biodegradable lace culottes" width="600" height="800" loading="lazy">
           </div>
@@ -1271,7 +1302,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Biodegradable%20lace%20culottes">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="lounge">
           <div class="photo">
             <img src="img/wear/casagin/nightwear.jpg" alt="Nightwear in natural fabric and biodegradable lace" width="600" height="800" loading="lazy">
           </div>
@@ -1282,7 +1313,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Nightwear%20in%20natural%20fabric%20and%20biodegradable%20lace">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/casagin/bodysuit.jpg" alt="TENCEL Dolcevita Bodysuit" width="600" height="800" loading="lazy">
           </div>
@@ -1293,7 +1324,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20TENCEL%20Dolcevita%20Bodysuit">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/casagin/turtleneck.jpg" alt="Long-sleeved TENCEL turtleneck" width="600" height="800" loading="lazy">
           </div>
@@ -1304,7 +1335,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Long-sleeved%20TENCEL%20turtleneck">Inquire</a>
           </div>
         </article>
-        <article class="card" id="tencel-leggings">
+        <article class="card" id="tencel-leggings" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/casagin/leggings.jpg" alt="TENCEL Leggings" width="600" height="800" loading="lazy">
           </div>
@@ -1315,7 +1346,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20TENCEL%20Leggings">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/casagin/palazzo.jpg" alt="Palazzo pants in TENCEL" width="600" height="800" loading="lazy">
           </div>
@@ -1332,7 +1363,7 @@
         <p>Wholesale catalog — SS24 lookbook on file. 6998 Fern Rd, Winlaw BC · info@nomadshempwear.com. Official photos from nomadshempwear.com. This is not Nomad the Label. Stays off the Organic hemp and GOTS specialty cuts.</p>
       </div>
       <div class="grid">
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/nomads/goa-bra-undies.jpg" alt="Goa Bra + Undies (Tie Dye Hemp Lyocell)" width="600" height="800" loading="lazy">
           </div>
@@ -1344,7 +1375,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Goa%20Bra%20%2B%20Undies%20(Tie%20Dye%20Hemp%20Lyocell)">Inquire</a>
           </div>
         </article>
-        <article class="card" id="daisy-dress">
+        <article class="card" id="daisy-dress" data-clothes="dresses">
           <div class="photo">
             <img src="img/wear/nomads/daisy-dress.jpg" alt="Daisy Dress (Hemp Lyocell)" width="600" height="800" loading="lazy">
           </div>
@@ -1356,7 +1387,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Daisy%20Dress%20(Hemp%20Lyocell)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="dresses">
           <div class="photo">
             <img src="img/wear/nomads/nova-dress.jpg" alt="Nova Dress (Tie Dye Hemp Lyocell)" width="600" height="800" loading="lazy">
           </div>
@@ -1368,7 +1399,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Nova%20Dress%20(Tie%20Dye%20Hemp%20Lyocell)">Inquire</a>
           </div>
         </article>
-        <article class="card" id="elektra-dress">
+        <article class="card" id="elektra-dress" data-clothes="dresses">
           <div class="photo">
             <img src="img/wear/nomads/elektra-dress.jpg" alt="Elektra Dress (bamboo + organic cotton Melange)" width="600" height="800" loading="lazy">
           </div>
@@ -1379,7 +1410,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Elektra%20Dress%20(bamboo%20%2B%20organic%20cotton%20Melange)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="dresses">
           <div class="photo">
             <img src="img/wear/nomads/topaz-dress.jpg" alt="Topaz Dress (bamboo Microstripe)" width="600" height="800" loading="lazy">
           </div>
@@ -1390,7 +1421,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Topaz%20Dress%20(bamboo%20Microstripe)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="dresses">
           <div class="photo">
             <img src="img/wear/nomads/mojito-dress.jpg" alt="Mojito Dress (bamboo + organic cotton)" width="600" height="800" loading="lazy">
           </div>
@@ -1401,7 +1432,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Mojito%20Dress%20(bamboo%20%2B%20organic%20cotton)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="lounge">
           <div class="photo">
             <img src="img/wear/nomads/kamikaze-onesie.jpg" alt="Kamikaze Onesie (bamboo + organic cotton)" width="600" height="800" loading="lazy">
           </div>
@@ -1412,7 +1443,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Kamikaze%20Onesie%20(bamboo%20%2B%20organic%20cotton)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/nomads/peyote-tee.jpg" alt="Peyote Tee (Tie Dye Hemp Lyocell)" width="600" height="800" loading="lazy">
           </div>
@@ -1424,7 +1455,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Peyote%20Tee%20(Tie%20Dye%20Hemp%20Lyocell)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/nomads/hendrix-short.jpg" alt="Hendrix Short (bamboo melange)" width="600" height="800" loading="lazy">
           </div>
@@ -1435,7 +1466,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Hendrix%20Short%20(bamboo%20melange)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/nomads/free-spirit-skirt.jpg" alt="Free-Spirit Skirt (Tie Dye Hemp Lyocell)" width="600" height="800" loading="lazy">
           </div>
@@ -1447,7 +1478,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Free-Spirit%20Skirt%20(Tie%20Dye%20Hemp%20Lyocell)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/nomads/manipura-tank.jpg" alt="Manipura Tank (yoga tank, chakra print)" width="600" height="800" loading="lazy">
           </div>
@@ -1458,7 +1489,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Manipura%20Tank%20(yoga%20tank%2C%20chakra%20print)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/nomads/amrita-tunic.jpg" alt="Amrita Tunic (Hemp Lyocell)" width="600" height="800" loading="lazy">
           </div>
@@ -1470,7 +1501,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Amrita%20Tunic%20(Hemp%20Lyocell)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/nomads/twilight-cardigan-2.jpg" alt="Twilight Cardigan 2.0 (organic cotton + bamboo)" width="600" height="800" loading="lazy">
           </div>
@@ -1481,7 +1512,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Twilight%20Cardigan%202.0%20(organic%20cotton%20%2B%20bamboo)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/nomads/kick-ass-tank.jpg" alt="Kick Ass Tank (bamboo melange)" width="600" height="800" loading="lazy">
           </div>
@@ -1492,7 +1523,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Kick%20Ass%20Tank%20(bamboo%20melange)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/nomads/genesis-shorts.jpg" alt="Genesis Shorts (men’s, organic cotton)" width="600" height="800" loading="lazy">
           </div>
@@ -1503,7 +1534,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Genesis%20Shorts%20(men%27s%2C%20organic%20cotton)">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/nomads/magnetic-tee.jpg" alt="Magnetic Tee (men’s, bamboo + organic cotton)" width="600" height="800" loading="lazy">
           </div>
@@ -1520,7 +1551,7 @@
         <p>Wholesale catalog — Royal Hemp Enterprises (Kiran Thapa, royalhempnepal.com). Textile, knit, and footwear only. Socks first. No CBD, no hemp seed oil, no 420-branded shoes, no Health / Wellness.</p>
       </div>
       <div class="grid">
-        <article class="card featured">
+        <article class="card featured" data-clothes="socks">
           <div class="photo">
             <img src="img/wear/royal-hemp/hemp-ankle-socks.jpg" alt="Hemp Ankle Socks" width="600" height="800" loading="lazy">
           </div>
@@ -1531,7 +1562,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Hemp%20Ankle%20Socks">Inquire</a>
           </div>
         </article>
-        <article class="card featured">
+        <article class="card featured" data-clothes="socks">
           <div class="photo">
             <img src="img/wear/royal-hemp/hemp-full-socks.jpg" alt="Hemp Full Socks" width="600" height="800" loading="lazy">
           </div>
@@ -1542,7 +1573,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Hemp%20Full%20Socks">Inquire</a>
           </div>
         </article>
-        <article class="card featured" id="hemp-baby-socks">
+        <article class="card featured" id="hemp-baby-socks" data-clothes="socks">
           <div class="photo">
             <img src="img/wear/royal-hemp/hemp-baby-socks.jpg" alt="Hemp Baby Socks" width="600" height="800" loading="lazy">
           </div>
@@ -1559,7 +1590,7 @@
         <p>The rest of the official fashion catalog that exists on royalhempnepal.com.</p>
       </div>
       <div class="grid">
-        <article class="card" id="half-sleeve-tshirt">
+        <article class="card" id="half-sleeve-tshirt" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/royal-hemp/half-sleeve-tshirt.jpg" alt="Half Sleeve Hemp Knitted Tshirt" width="600" height="800" loading="lazy">
           </div>
@@ -1570,7 +1601,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Half%20Sleeve%20Hemp%20Knitted%20Tshirt">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/royal-hemp/round-neck-tshirt.jpg" alt="Hemp Knitted round Neck T-Shirt" width="600" height="800" loading="lazy">
           </div>
@@ -1581,7 +1612,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Hemp%20Knitted%20round%20Neck%20T-Shirt">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/royal-hemp/polo-tshirt.jpg" alt="Hemp Polo Neck Knitted T-Shirt" width="600" height="800" loading="lazy">
           </div>
@@ -1592,7 +1623,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Hemp%20Polo%20Neck%20Knitted%20T-Shirt">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/royal-hemp/mens-knitted-shirt.jpg" alt="Men&#x27;s Hemp Knitted Shirt" width="600" height="800" loading="lazy">
           </div>
@@ -1603,7 +1634,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Men%27s%20Hemp%20Knitted%20Shirt">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/royal-hemp/mens-knitted-shorts.jpg" alt="Men&#x27;s Knitted Hemp Shorts" width="600" height="800" loading="lazy">
           </div>
@@ -1614,7 +1645,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Men%27s%20Knitted%20Hemp%20Shorts">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/royal-hemp/sleeveless-top.jpg" alt="Hemp Knitted Sleveless Top" width="600" height="800" loading="lazy">
           </div>
@@ -1625,7 +1656,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Hemp%20Knitted%20Sleveless%20Top">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/royal-hemp/halter-top.jpg" alt="Knitted Halter Top" width="600" height="800" loading="lazy">
           </div>
@@ -1636,7 +1667,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Knitted%20Halter%20Top">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/royal-hemp/hemp-boxer.jpg" alt="Hemp Boxer" width="600" height="800" loading="lazy">
           </div>
@@ -1658,7 +1689,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Natural%20Hemp%20Fabric">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="shoes">
           <div class="photo">
             <img src="img/wear/royal-hemp/casual-hemp-sneakers.jpg" alt="Casual Hemp Sneakers" width="600" height="800" loading="lazy">
           </div>
@@ -1669,7 +1700,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Casual%20Hemp%20Sneakers">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="shoes">
           <div class="photo">
             <img src="img/wear/royal-hemp/sadaya-hemp-slip-on.jpg" alt="Sadaya Hemp Slip On" width="600" height="800" loading="lazy">
           </div>
@@ -1686,7 +1717,7 @@
         <p>Wholesale catalog — line sheets received May 2026. Dash Hemp Santa Cruz, 303 Potrero St. Named hemp clothing only. Official photos from dashhemp.com.</p>
       </div>
       <div class="grid">
-        <article class="card" id="chi-jean">
+        <article class="card" id="chi-jean" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/dash-hemp/chi-jean.jpg" alt="Chi Gusseted Hemp Jean" width="600" height="800" loading="lazy">
           </div>
@@ -1697,7 +1728,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Chi%20Gusseted%20Hemp%20Jean">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/dash-hemp/nuccio-jean.jpg" alt="Nuccio Five Pocket Hemp Jean" width="600" height="800" loading="lazy">
           </div>
@@ -1708,7 +1739,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Nuccio%20Five%20Pocket%20Hemp%20Jean">Inquire</a>
           </div>
         </article>
-        <article class="card" id="cabo-hoodie">
+        <article class="card" id="cabo-hoodie" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/dash-hemp/cabo-hoodie.jpg" alt="Cabo Unisex French Terry Hemp Hoodie" width="600" height="800" loading="lazy">
           </div>
@@ -1719,7 +1750,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Cabo%20Unisex%20French%20Terry%20Hemp%20Hoodie">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/dash-hemp/oakhurst-hoodie.jpg" alt="Oakhurst Unisex Hemp Fleece Hoodie" width="600" height="800" loading="lazy">
           </div>
@@ -1730,7 +1761,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Oakhurst%20Unisex%20Hemp%20Fleece%20Hoodie">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="lounge">
           <div class="photo">
             <img src="img/wear/dash-hemp/mens-spa-robe.jpg" alt="Men&#x27;s Hemp Spa Robe" width="600" height="800" loading="lazy">
           </div>
@@ -1741,7 +1772,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Men%27s%20Hemp%20Spa%20Robe">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="lounge">
           <div class="photo">
             <img src="img/wear/dash-hemp/spa-robe.jpg" alt="French Terry Hemp Spa Robe" width="600" height="800" loading="lazy">
           </div>
@@ -1752,7 +1783,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20French%20Terry%20Hemp%20Spa%20Robe">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/dash-hemp/mishka-skirt.jpg" alt="Mishka 100% Hemp Paneled Skirt" width="600" height="800" loading="lazy">
           </div>
@@ -1763,7 +1794,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Mishka%20100%25%20Hemp%20Paneled%20Skirt">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/dash-hemp/mazatlan-pant.jpg" alt="Mazatlan 100% Hemp Woven Pant" width="600" height="800" loading="lazy">
           </div>
@@ -1774,7 +1805,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Mazatlan%20100%25%20Hemp%20Woven%20Pant">Inquire</a>
           </div>
         </article>
-        <article class="card" id="camp-cruz">
+        <article class="card" id="camp-cruz" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/dash-hemp/camp-cruz.jpg" alt="Camp Cruz 100% Hemp Shirt" width="600" height="800" loading="lazy">
           </div>
@@ -1785,7 +1816,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Camp%20Cruz%20100%25%20Hemp%20Shirt">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/dash-hemp/brookdale-top.jpg" alt="Brookdale 100% Hemp Scoop Neck Knit Top" width="600" height="800" loading="lazy">
           </div>
@@ -1802,7 +1833,7 @@
         <p>Official rawganique.com product photos. Organic hemp, organic linen, and elastic-free organic cotton. Linen is shirts and underwear, Rawganique only. SONOMA is V2 Natural only. FRISCO is grown and made in USA.</p>
       </div>
 <div class="grid">
-        <article class="card" id="bel-air" data-fabric="hemp">
+        <article class="card" id="bel-air" data-fabric="hemp" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/rawganique/bel-air.jpg" alt="BEL AIR 100% Organic Hemp Knit T-Shirt" width="600" height="800" loading="lazy">
           </div>
@@ -1814,7 +1845,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20BEL%20AIR%20100%25%20Organic%20Hemp%20Knit%20T-Shirt">Inquire</a>
           </div>
         </article>
-        <article class="card featured" id="canaltown" data-fabric="organic-cotton">
+        <article class="card featured" id="canaltown" data-fabric="organic-cotton" data-clothes="socks">
           <div class="photo">
             <img src="img/wear/rawganique/canaltown.jpg" alt="CANALTOWN Elastic-Free 3-Ply 100% Organic Cotton Socks" width="600" height="800" loading="lazy">
           </div>
@@ -1826,7 +1857,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20CANALTOWN%20Elastic-Free%203-Ply%20100%25%20Organic%20Cotton%20Socks">Inquire</a>
           </div>
         </article>
-        <article class="card" id="joey" data-fabric="hemp">
+        <article class="card" id="joey" data-fabric="hemp" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/rawganique/joey.jpg" alt="JOEY 100% Organic Hemp Boxer Shorts" width="600" height="800" loading="lazy">
           </div>
@@ -1838,7 +1869,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20JOEY%20100%25%20Organic%20Hemp%20Boxer%20Shorts">Inquire</a>
           </div>
         </article>
-        <article class="card featured" id="sonoma" data-fabric="organic-cotton" data-country="usa">
+        <article class="card featured" id="sonoma" data-fabric="organic-cotton" data-country="usa" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/rawganique/sonoma-v2-natural.jpg" alt="SONOMA 100% Organic Cotton Crewneck T-Shirt, V2 Natural" width="600" height="800" loading="lazy">
           </div>
@@ -1850,7 +1881,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20SONOMA%20100%25%20Organic%20Cotton%20Crewneck%20T-Shirt%20V2%20Natural">Inquire</a>
           </div>
         </article>
-        <article class="card" id="frisco" data-country="usa">
+        <article class="card" id="frisco" data-country="usa" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/rawganique/frisco-long-sleeve.jpg" alt="FRISCO 100% Organic Cotton Long-Sleeve T-Shirt (Grown &amp; Made in USA)" width="600" height="800" loading="lazy">
           </div>
@@ -1862,7 +1893,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20FRISCO%20100%25%20Organic%20Cotton%20Long-Sleeve%20T-Shirt">Inquire</a>
           </div>
         </article>
-        <article class="card" id="eco-couture-pants" data-fabric="hemp">
+        <article class="card" id="eco-couture-pants" data-fabric="hemp" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/rawganique/eco-couture-pants.jpg" alt="Eco-Couture 100% Organic Hemp Flat Front Dress Pants Slacks" width="600" height="800" loading="lazy">
           </div>
@@ -1874,7 +1905,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Eco-Couture%20100%25%20Organic%20Hemp%20Flat%20Front%20Dress%20Pants">Inquire</a>
           </div>
         </article>
-        <article class="card" id="sophia" data-fabric="hemp">
+        <article class="card" id="sophia" data-fabric="hemp" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/rawganique/sophia-boy-shorts.jpg" alt="SOPHIA Elastic-Free Organic Hemp Knit Boy Shorts" width="600" height="800" loading="lazy">
           </div>
@@ -1886,7 +1917,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20SOPHIA%20Elastic-Free%20Organic%20Hemp%20Knit%20Boy%20Shorts">Inquire</a>
           </div>
         </article>
-        <article class="card" id="lyon" data-fabric="linen">
+        <article class="card" id="lyon" data-fabric="linen" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/rawganique/lyon-linen-boxers.jpg" alt="LYON Elastic-free 100% Organic Linen Woven Boxers" width="600" height="800" loading="lazy">
           </div>
@@ -1898,7 +1929,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20LYON%20Elastic-free%20100%25%20Organic%20Linen%20Woven%20Boxers">Inquire</a>
           </div>
         </article>
-        <article class="card" id="saoirse" data-fabric="linen">
+        <article class="card" id="saoirse" data-fabric="linen" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/rawganique/saoirse-linen-boy-shorts.jpg" alt="SAOIRSE Elastic-free Organic Linen Knit Boy Shorts" width="600" height="800" loading="lazy">
           </div>
@@ -1910,7 +1941,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20SAOIRSE%20Elastic-free%20Organic%20Linen%20Knit%20Boy%20Shorts">Inquire</a>
           </div>
         </article>
-        <article class="card" id="newport-beach" data-fabric="linen" data-country="europe">
+        <article class="card" id="newport-beach" data-fabric="linen" data-country="europe" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/rawganique/newport-beach-linen-shirt.jpg" alt="NEWPORT BEACH 100% Organic Linen Short-Sleeve Shirt With Pockets" width="600" height="800" loading="lazy">
           </div>
@@ -1922,7 +1953,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20NEWPORT%20BEACH%20100%25%20Organic%20Linen%20Short-Sleeve%20Shirt">Inquire</a>
           </div>
         </article>
-        <article class="card" id="honolulu" data-fabric="organic-cotton" data-country="europe">
+        <article class="card" id="honolulu" data-fabric="organic-cotton" data-country="europe" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/rawganique/honolulu-tank.jpg" alt="HONOLULU 100% Organic Cotton Tank Top" width="600" height="800" loading="lazy">
           </div>
@@ -1934,7 +1965,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20HONOLULU%20100%25%20Organic%20Cotton%20Tank%20Top">Inquire</a>
           </div>
         </article>
-        <article class="card" id="surfside" data-fabric="organic-cotton">
+        <article class="card" id="surfside" data-fabric="organic-cotton" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/rawganique/surfside-muslin-shirt.jpg" alt="SURFSIDE 100% Organic Cotton Double-Gauze Muslin Shirt" width="600" height="800" loading="lazy">
           </div>
@@ -1946,7 +1977,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20SURFSIDE%20100%25%20Organic%20Cotton%20Double-Gauze%20Muslin%20Shirt">Inquire</a>
           </div>
         </article>
-        <article class="card featured" id="puremeadow" data-fabric="organic-cotton">
+        <article class="card featured" id="puremeadow" data-fabric="organic-cotton" data-clothes="socks">
           <div class="photo">
             <img src="img/wear/rawganique/puremeadow-socks.jpg" alt="PUREMEADOW Elastic-free 2-Ply 100% Organic Cotton Socks" width="600" height="800" loading="lazy">
           </div>
@@ -1958,7 +1989,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20PUREMEADOW%20Elastic-free%202-Ply%20100%25%20Organic%20Cotton%20Socks">Inquire</a>
           </div>
         </article>
-        <article class="card featured" id="meadowlands" data-fabric="organic-cotton">
+        <article class="card featured" id="meadowlands" data-fabric="organic-cotton" data-clothes="socks">
           <div class="photo">
             <img src="img/wear/rawganique/meadowlands-socks.jpg" alt="MEADOWLANDS Elastic-free 3-Ply 100% Organic Cotton Crew Socks" width="600" height="800" loading="lazy">
           </div>
@@ -1970,7 +2001,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20MEADOWLANDS%20Elastic-free%203-Ply%20100%25%20Organic%20Cotton%20Crew%20Socks">Inquire</a>
           </div>
         </article>
-        <article class="card featured" id="creekmill" data-fabric="organic-cotton">
+        <article class="card featured" id="creekmill" data-fabric="organic-cotton" data-clothes="socks">
           <div class="photo">
             <img src="img/wear/rawganique/creekmill-socks.jpg" alt="CREEKMILL Elastic-free 3-Ply 100% Organic Cotton Socks" width="600" height="800" loading="lazy">
           </div>
@@ -1988,7 +2019,7 @@
         <p>100% Regenerative Organic Certified cotton only. Official maggiesorganics.com photos. No stretch or spandex Maggie&#x27;s.</p>
       </div>
 <div class="grid">
-        <article class="card" id="maggies-tee" data-fabric="organic-cotton" data-country="peru" data-fairtrade="yes">
+        <article class="card" id="maggies-tee" data-fabric="organic-cotton" data-country="peru" data-fairtrade="yes" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/maggies/classic-crew-tee.jpg" alt="100% Regenerative Organic Certified® Cotton - Classic Crew Neck Tee" width="600" height="800" loading="lazy">
           </div>
@@ -2000,7 +2031,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20100%25%20Regenerative%20Organic%20Certified%C2%AE%20Cotton%20-%20Classic%20Crew%20Neck%20Tee">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton" data-fairtrade="yes">
+        <article class="card" data-fabric="organic-cotton" data-fairtrade="yes" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/maggies/classic-hoodie.jpg" alt="100% Regenerative Organic Certified® Cotton - Classic Hoodie" width="600" height="800" loading="lazy">
           </div>
@@ -2012,7 +2043,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20100%25%20Regenerative%20Organic%20Certified%C2%AE%20Cotton%20-%20Classic%20Hoodie">Inquire</a>
           </div>
         </article>
-        <article class="card" id="maggies-tank" data-fabric="organic-cotton" data-country="peru" data-fairtrade="yes">
+        <article class="card" id="maggies-tank" data-fabric="organic-cotton" data-country="peru" data-fairtrade="yes" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/maggies/classic-tank.jpg" alt="100% Regenerative Organic Certified® Cotton - Classic Tank" width="600" height="800" loading="lazy">
           </div>
@@ -2024,7 +2055,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20100%25%20Regenerative%20Organic%20Certified%C2%AE%20Cotton%20-%20Classic%20Tank">Inquire</a>
           </div>
         </article>
-        <article class="card" id="maggies-workwear" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes">
+        <article class="card" id="maggies-workwear" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/maggies/workwear-shirt.jpg" alt="100% Regenerative Organic Certified® Cotton - Workwear Shirt" width="600" height="800" loading="lazy">
           </div>
@@ -2036,7 +2067,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20100%25%20Regenerative%20Organic%20Certified%C2%AE%20Cotton%20-%20Workwear%20Shirt">Inquire</a>
           </div>
         </article>
-        <article class="card" id="maggies-vest" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes">
+        <article class="card" id="maggies-vest" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/maggies/roc-sweater-vest.jpg" alt="100% Regenerative Organic Certified® Cotton - Sweater Vest" width="600" height="800" loading="lazy">
           </div>
@@ -2048,7 +2079,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20100%25%20Regenerative%20Organic%20Certified%C2%AE%20Cotton%20-%20Sweater%20Vest">Inquire</a>
           </div>
         </article>
-        <article class="card" id="maggies-cardigan" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes">
+        <article class="card" id="maggies-cardigan" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/maggies/roc-cardigan-sweater.jpg" alt="100% Regenerative Organic Certified® Cotton - Cardigan Sweater" width="600" height="800" loading="lazy">
           </div>
@@ -2060,7 +2091,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20100%25%20Regenerative%20Organic%20Certified%C2%AE%20Cotton%20-%20Cardigan%20Sweater">Inquire</a>
           </div>
         </article>
-        <article class="card" id="maggies-vneck" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="maggies-vneck" data-fabric="organic-cotton" data-country="india" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/maggies/roc-v-neck-sweater.jpg" alt="100% Regenerative Organic Certified® Cotton - V-Neck Sweater" width="600" height="800" loading="lazy">
           </div>
@@ -2078,7 +2109,7 @@
         <p>Official coyuchi.com loungewear photos.</p>
       </div>
 <div class="grid">
-        <article class="card" data-fabric="organic-cotton" data-country="peru">
+        <article class="card" data-fabric="organic-cotton" data-country="peru" data-clothes="bottoms">
           <div class="photo">
             <img src="img/wear/coyuchi/pima-jogger.jpg" alt="Women&#x27;s Pima Organic Knit Jogger" width="600" height="800" loading="lazy">
           </div>
@@ -2090,7 +2121,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Women%27s%20Pima%20Organic%20Knit%20Jogger">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton" data-country="turkey">
+        <article class="card" data-fabric="organic-cotton" data-country="turkey" data-clothes="lounge">
           <div class="photo">
             <img src="img/wear/coyuchi/waffle-robe.jpg" alt="Unisex Organic Waffle Robe" width="600" height="800" loading="lazy">
           </div>
@@ -2102,7 +2133,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Unisex%20Organic%20Waffle%20Robe">Inquire</a>
           </div>
         </article>
-        <article class="card" id="isla-night-dress" data-fabric="organic-cotton" data-fairtrade="yes">
+        <article class="card" id="isla-night-dress" data-fabric="organic-cotton" data-fairtrade="yes" data-clothes="lounge">
           <div class="photo">
             <img src="img/wear/coyuchi/isla-night-dress.jpg" alt="Women&#x27;s Isla Organic Cotton Night Dress" width="600" height="800" loading="lazy">
           </div>
@@ -2114,7 +2145,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Women%27s%20Isla%20Organic%20Cotton%20Night%20Dress">Inquire</a>
           </div>
         </article>
-        <article class="card" id="coyuchi-henley" data-fabric="organic-cotton" data-country="peru">
+        <article class="card" id="coyuchi-henley" data-fabric="organic-cotton" data-country="peru" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/coyuchi/pima-knit-henley.jpg" alt="Women&#x27;s Pima Organic Knit Henley" width="600" height="800" loading="lazy">
           </div>
@@ -2132,7 +2163,7 @@
         <p>Official underthecanopy.com loungewear. GOTS 100% organic cotton.</p>
       </div>
 <div class="grid">
-        <article class="card" data-fabric="organic-cotton" data-country="turkey">
+        <article class="card" data-fabric="organic-cotton" data-country="turkey" data-clothes="lounge">
           <div class="photo">
             <img src="img/wear/utc/short-lounge-robe.jpg" alt="Organic Short Lounge Robe - Teal" width="600" height="800" loading="lazy">
           </div>
@@ -2144,7 +2175,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Short%20Lounge%20Robe%20-%20Teal">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton" data-country="turkey">
+        <article class="card" data-fabric="organic-cotton" data-country="turkey" data-clothes="lounge">
           <div class="photo">
             <img src="img/wear/utc/lounge-cami.jpg" alt="Organic Lounge Cami - Black" width="600" height="800" loading="lazy">
           </div>
@@ -2156,7 +2187,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Lounge%20Cami%20-%20Black">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton" data-country="turkey">
+        <article class="card" data-fabric="organic-cotton" data-country="turkey" data-clothes="lounge">
           <div class="photo">
             <img src="img/wear/utc/lounge-short.jpg" alt="Organic Lounge Short - Teal" width="600" height="800" loading="lazy">
           </div>
@@ -2168,7 +2199,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Lounge%20Short%20-%20Teal">Inquire</a>
           </div>
         </article>
-        <article class="card" id="utc-ls-tee" data-fabric="organic-cotton" data-country="turkey">
+        <article class="card" id="utc-ls-tee" data-fabric="organic-cotton" data-country="turkey" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/utc/long-sleeve-tee-light-gray.jpg" alt="Organic Long Sleeve Tee - Light Gray" width="600" height="800" loading="lazy">
           </div>
@@ -2186,7 +2217,7 @@
         <p>Official matethelabel.com photos. Organic Pima only — no MATE Stretch bra or legging.</p>
       </div>
 <div class="grid">
-        <article class="card" data-fabric="organic-cotton" data-country="peru">
+        <article class="card" data-fabric="organic-cotton" data-country="peru" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/mate/pima-classic-tee.jpg" alt="Organic Pima Classic Tee" width="600" height="800" loading="lazy">
           </div>
@@ -2198,7 +2229,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Pima%20Classic%20Tee">Inquire</a>
           </div>
         </article>
-        <article class="card" id="mate-layering-tank" data-fabric="organic-cotton" data-country="peru">
+        <article class="card" id="mate-layering-tank" data-fabric="organic-cotton" data-country="peru" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/mate/pima-layering-tank.jpg" alt="Organic Pima Layering Tank" width="600" height="800" loading="lazy">
           </div>
@@ -2210,7 +2241,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Pima%20Layering%20Tank">Inquire</a>
           </div>
         </article>
-        <article class="card" id="mate-ls-tee" data-fabric="organic-cotton" data-country="peru">
+        <article class="card" id="mate-ls-tee" data-fabric="organic-cotton" data-country="peru" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/mate/pima-long-sleeve-tee.jpg" alt="Organic Pima Long Sleeve Tee" width="600" height="800" loading="lazy">
           </div>
@@ -2228,7 +2259,7 @@
         <p>Official us.organicbasics.com photos. True Heavy tee plus Weekend Boxy Hoodie — no stretch trunks.</p>
       </div>
 <div class="grid">
-        <article class="card" id="ob-true-heavy" data-fabric="organic-cotton">
+        <article class="card" id="ob-true-heavy" data-fabric="organic-cotton" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/organic-basics/true-heavy-boxy-tee.jpg" alt="True Heavy Boxy Fit Tee" width="600" height="800" loading="lazy">
           </div>
@@ -2240,7 +2271,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20True%20Heavy%20Boxy%20Fit%20Tee">Inquire</a>
           </div>
         </article>
-        <article class="card" id="ob-weekend-hoodie" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="ob-weekend-hoodie" data-fabric="organic-cotton" data-country="india" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/organic-basics/weekend-boxy-hoodie.jpg" alt="Weekend Boxy Hoodie" width="600" height="800" loading="lazy">
           </div>
@@ -2258,7 +2289,7 @@
         <p>Official harvestandmill.com photos. Organic cotton grown and sewn in the USA. Not the same as grocery USDA Organic food tags.</p>
       </div>
       <div class="grid">
-        <article class="card" id="hm-mens-crew" data-fabric="organic-cotton" data-country="usa">
+        <article class="card" id="hm-mens-crew" data-fabric="organic-cotton" data-country="usa" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/harvest-mill/mens-organic-crew.jpg" alt="Men&#x27;s Organic Crew Tee in Natural" width="600" height="800" loading="lazy">
           </div>
@@ -2270,7 +2301,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Men%27s%20Organic%20Crew%20Tee%20in%20Natural">Inquire</a>
           </div>
         </article>
-        <article class="card" id="hm-womens-vneck" data-fabric="organic-cotton" data-country="usa">
+        <article class="card" id="hm-womens-vneck" data-fabric="organic-cotton" data-country="usa" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/harvest-mill/womens-organic-v-neck.jpg" alt="Women&#x27;s Organic Unisex Style V-Neck Tee in Natural" width="600" height="800" loading="lazy">
           </div>
@@ -2288,7 +2319,7 @@
         <p>Official nomadthelabel.com photos. Australian GOTS cotton brand. This is not Nomads Hemp Wear.</p>
       </div>
       <div class="grid">
-        <article class="card" id="nomad-mimosa" data-fabric="organic-cotton" data-country="vietnam">
+        <article class="card" id="nomad-mimosa" data-fabric="organic-cotton" data-country="vietnam" data-clothes="dresses">
           <div class="photo">
             <img src="img/wear/nomad-the-label/mimosa-dress-navy.jpg" alt="Mimosa Cotton Dress Navy" width="600" height="800" loading="lazy">
           </div>
@@ -2300,7 +2331,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Mimosa%20Cotton%20Dress%20Navy">Inquire</a>
           </div>
         </article>
-        <article class="card" id="nomad-daisy" data-fabric="organic-cotton">
+        <article class="card" id="nomad-daisy" data-fabric="organic-cotton" data-clothes="tops">
           <div class="photo">
             <img src="img/wear/nomad-the-label/daisy-blouse-ivory.jpg" alt="Daisy Cotton Blouse Ivory" width="600" height="800" loading="lazy">
           </div>
@@ -2318,7 +2349,7 @@
         <p>Official seasaltcornwall.com photos. Soil Association GOTS where the PDP names it.</p>
       </div>
 <div class="grid">
-        <article class="card" id="seasalt-brouse" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="seasalt-brouse" data-fabric="organic-cotton" data-country="india" data-clothes="dresses">
           <div class="photo">
             <img src="img/wear/seasalt/brouse-dress.jpg" alt="Brouse Dress in GOTS-Certified Organic Cotton" width="600" height="800" loading="lazy">
           </div>
@@ -2330,7 +2361,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Brouse%20Dress%20in%20GOTS-Certified%20Organic%20Cotton">Inquire</a>
           </div>
         </article>
-        <article class="card" id="seasalt-sand" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="seasalt-sand" data-fabric="organic-cotton" data-country="india" data-clothes="dresses">
           <div class="photo">
             <img src="img/wear/seasalt/sand-patterns-dress.jpg" alt="Sand Patterns Dress in GOTS-Certified Organic Cotton" width="600" height="800" loading="lazy">
           </div>
@@ -2348,7 +2379,7 @@
         <p>Official makemakeorganics.com photos. Kids dress named on the brand page.</p>
       </div>
 <div class="grid">
-        <article class="card" id="makemake-cross-back" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="makemake-cross-back" data-fabric="organic-cotton" data-country="india" data-clothes="dresses">
           <div class="photo">
             <img src="img/wear/makemake/cross-back-basil-stripes.jpg" alt="Organic Cross Back Dress - Basil Stripes" width="600" height="800" loading="lazy">
           </div>
@@ -2366,7 +2397,7 @@
         <p>Official cottonique.com photos. Elastic-free organic cotton only.</p>
       </div>
 <div class="grid">
-        <article class="card" id="cottonique-boxers" data-fabric="organic-cotton">
+        <article class="card" id="cottonique-boxers" data-fabric="organic-cotton" data-clothes="underwear">
           <div class="photo">
             <img src="img/wear/cottonique/drawstring-woven-boxers.jpg" alt="Men’s Drawstring Woven Boxer Shorts" width="600" height="800" loading="lazy">
           </div>
@@ -2378,7 +2409,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Men%27s%20Drawstring%20Woven%20Boxer%20Shorts">Inquire</a>
           </div>
         </article>
-        <article class="card" id="cottonique-socks" data-fabric="organic-cotton">
+        <article class="card" id="cottonique-socks" data-fabric="organic-cotton" data-clothes="socks">
           <div class="photo">
             <img src="img/wear/cottonique/elite-elastic-free-socks.jpg" alt="Elite Elastic-Free 100% Organic Cotton Socks – Natural (2 Pairs)" width="600" height="800" loading="lazy">
           </div>
@@ -2396,7 +2427,7 @@
         <p>Official ginewusa.com. Native American Owned on the brand homepage. Organic cotton only where the opened PDP names it. No GOTS. No Made in USA — that jacket PDP says imported creation.</p>
       </div>
       <div class="grid">
-        <article class="card" id="ginew-barn-jacket-indigo" data-fabric="organic-cotton" data-indigenous="yes">
+        <article class="card" id="ginew-barn-jacket-indigo" data-fabric="organic-cotton" data-indigenous="yes" data-clothes="outerwear">
           <div class="photo">
             <img src="img/wear/ginew/barn-jacket-indigo-herringbone.jpg" alt="Barn Jacket Indigo Herringbone" width="600" height="800" loading="lazy">
           </div>
@@ -2417,8 +2448,22 @@
         <h2>Baby clothes + bedding</h2>
         <p>Accepted baby items only. Catalog + inquire — no checkout, no prices.</p>
       </div>
+      <div class="aisle-types cut-group" data-aisle-types="baby">
+        <p class="cut-label">Shop by type</p>
+        <div class="cut-row">
+          <button type="button" class="type-cut-btn" data-aisle-type="baby" data-type="">All</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="baby" data-type="bodysuits">Bodysuits</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="baby" data-type="sleepers">Sleepers + PJs</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="baby" data-type="clothes">Clothes</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="baby" data-type="socks">Socks</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="baby" data-type="bibs">Bibs</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="baby" data-type="bedding">Bedding</button>
+        </div>
+        <p class="cut-status" id="baby-cut-status"></p>
+      </div>
+
 <div class="grid">
-        <article class="card featured">
+        <article class="card featured" data-baby="socks">
           <div class="photo">
             <img src="img/wear/royal-hemp/hemp-baby-socks.jpg" alt="Hemp Baby Socks" width="600" height="800" loading="lazy">
           </div>
@@ -2429,7 +2474,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Hemp%20Baby%20Socks">Inquire</a>
           </div>
         </article>
-        <article class="card" id="wild-floral" data-fabric="organic-cotton">
+        <article class="card" id="wild-floral" data-fabric="organic-cotton" data-baby="bodysuits">
           <div class="photo">
             <img src="img/baby/bbb-wild-floral-bodysuits.jpg" alt="Wild Floral Organic Cotton Bodysuits 2 Pack" width="600" height="800" loading="lazy">
           </div>
@@ -2441,7 +2486,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Wild%20Floral%20Organic%20Cotton%20Bodysuits%202%20Pack">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-baby="bodysuits">
           <div class="photo">
             <img src="img/baby/butterblu-avery.jpg" alt="AVERY 5-Pack Short Sleeve Bodysuits" width="600" height="800" loading="lazy">
           </div>
@@ -2453,7 +2498,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20AVERY%205-Pack%20Short%20Sleeve%20Bodysuits">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-baby="bodysuits">
           <div class="photo">
             <img src="img/baby/butterblu-sterling.jpg" alt="STERLING 3-Pack Side Snap Bodysuit" width="600" height="800" loading="lazy">
           </div>
@@ -2465,7 +2510,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20STERLING%203-Pack%20Side%20Snap%20Bodysuit">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-baby="bodysuits">
           <div class="photo">
             <img src="img/baby/tenth-bestie-clay.jpg" alt="Bestie Clay Organic Cotton Baby Bodysuit Short Sleeve" width="600" height="800" loading="lazy">
           </div>
@@ -2477,7 +2522,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Bestie%20Clay%20Organic%20Cotton%20Baby%20Bodysuit%20Short%20Sleeve">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton" data-country="india">
+        <article class="card" data-fabric="organic-cotton" data-country="india" data-baby="sleepers">
           <div class="photo">
             <img src="img/baby/lovedbaby-white-gown.jpg" alt="White | Organic Gown" width="600" height="800" loading="lazy">
           </div>
@@ -2489,7 +2534,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20White%20%7C%20Organic%20Gown">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton" data-country="india">
+        <article class="card" data-fabric="organic-cotton" data-country="india" data-baby="sleepers">
           <div class="photo">
             <img src="img/baby/lovedbaby-oatmeal-footie.jpg" alt="Oatmeal | Organic Zipper Footie" width="600" height="800" loading="lazy">
           </div>
@@ -2501,7 +2546,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Oatmeal%20%7C%20Organic%20Zipper%20Footie">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton" data-country="india">
+        <article class="card" data-fabric="organic-cotton" data-country="india" data-baby="sleepers">
           <div class="photo">
             <img src="img/baby/bbb-kyoto-sleeper.jpg" alt="Kyoto Organic Cotton Sleeper" width="600" height="800" loading="lazy">
           </div>
@@ -2513,7 +2558,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Kyoto%20Organic%20Cotton%20Sleeper">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton" data-country="india">
+        <article class="card" data-fabric="organic-cotton" data-country="india" data-baby="clothes">
           <div class="photo">
             <img src="img/baby/lovedbaby-white-hat.jpg" alt="White | Organic Knotted Hat" width="600" height="800" loading="lazy">
           </div>
@@ -2525,7 +2570,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20White%20%7C%20Organic%20Knotted%20Hat">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-baby="clothes">
           <div class="photo">
             <img src="img/baby/butterblu-jordan.jpg" alt="JORDAN 4-Pack Jogger Baby &amp; Toddler Pants" width="600" height="800" loading="lazy">
           </div>
@@ -2537,7 +2582,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20JORDAN%204-Pack%20Jogger%20Baby%20%26%20Toddler%20Pants">Inquire</a>
           </div>
         </article>
-        <article class="card featured" id="qforquinn-socks">
+        <article class="card featured" id="qforquinn-socks" data-baby="socks">
           <div class="photo">
             <img src="img/baby/qforquinn-socks.jpg" alt="Natural (no dye) Kids&#x27; Socks - 98% Organic Cotton (3-pack)" width="600" height="800" loading="lazy">
           </div>
@@ -2549,7 +2594,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Natural%20(no%20dye)%20Kids%27%20Socks%20-%2098%25%20Organic%20Cotton%20(3-pack)">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/naturepedic-swaddle.jpg" alt="Breathable Organic Cotton Muslin Swaddle Blankets (4-Color Pack)" width="600" height="800" loading="lazy">
           </div>
@@ -2561,7 +2606,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Breathable%20Organic%20Cotton%20Muslin%20Swaddle%20Blankets%20%284-Color%20Pack%29">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/naturepedic-crib-sheet.jpg" alt="Organic Sateen Crib Sheets" width="600" height="800" loading="lazy">
           </div>
@@ -2573,7 +2618,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Sateen%20Crib%20Sheets">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/coyuchi-crib-sheet.jpg" alt="Organic Crinkled Percale™ Crib Sheet" width="600" height="800" loading="lazy">
           </div>
@@ -2585,7 +2630,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Crinkled%20Percale%E2%84%A2%20Crib%20Sheet">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/avocado-crib-sheet.jpg" alt="Organic Cotton Crib Sheet" width="600" height="800" loading="lazy">
           </div>
@@ -2597,7 +2642,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Cotton%20Crib%20Sheet">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/coyuchi-baby-blanket.jpg" alt="Classic Organic Baby Blanket" width="600" height="800" loading="lazy">
           </div>
@@ -2609,7 +2654,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Classic%20Organic%20Baby%20Blanket">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/babyletto-changing-pad-cover.jpg" alt="Quilted Changing Pad Cover in GOTS Certified Organic Muslin Cotton" width="600" height="800" loading="lazy">
           </div>
@@ -2621,7 +2666,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Quilted%20Changing%20Pad%20Cover%20in%20GOTS%20Certified%20Organic%20Muslin%20Cotton">Inquire</a>
           </div>
         </article>
-        <article class="card" id="lovedbaby-kimono" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="lovedbaby-kimono" data-fabric="organic-cotton" data-country="india" data-baby="bodysuits">
           <div class="photo">
             <img src="img/baby/lovedbaby-kimono-white.jpg" alt="White | Organic Kimono Bodysuit" width="600" height="800" loading="lazy">
           </div>
@@ -2633,7 +2678,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20White%20%7C%20Organic%20Kimono%20Bodysuit">Inquire</a>
           </div>
         </article>
-        <article class="card" id="lovedbaby-kelp" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="lovedbaby-kelp" data-fabric="organic-cotton" data-country="india" data-baby="sleepers">
           <div class="photo">
             <img src="img/baby/lovedbaby-kelp-romper.jpg" alt="Kelp | Organic Zipper Romper" width="600" height="800" loading="lazy">
           </div>
@@ -2645,7 +2690,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Kelp%20%7C%20Organic%20Zipper%20Romper">Inquire</a>
           </div>
         </article>
-        <article class="card" id="bbb-bloom-blossom" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="bbb-bloom-blossom" data-fabric="organic-cotton" data-country="india" data-baby="sleepers">
           <div class="photo">
             <img src="img/baby/bbb-bloom-blossom-romper.jpg" alt="Bloom and Blossom Organic Baby Sleeper Romper" width="600" height="800" loading="lazy">
           </div>
@@ -2657,7 +2702,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Bloom%20and%20Blossom%20Organic%20Baby%20Sleeper%20Romper">Inquire</a>
           </div>
         </article>
-        <article class="card" id="lovedbaby-charcoal-pants" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="lovedbaby-charcoal-pants" data-fabric="organic-cotton" data-country="india" data-baby="clothes">
           <div class="photo">
             <img src="img/baby/lovedbaby-charcoal-pants.jpg" alt="Charcoal | Organic Baby Dress Pants" width="600" height="800" loading="lazy">
           </div>
@@ -2669,7 +2714,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Charcoal%20%7C%20Organic%20Baby%20Dress%20Pants">Inquire</a>
           </div>
         </article>
-        <article class="card" id="lu-white-sage-bibs" data-fabric="organic-cotton">
+        <article class="card" id="lu-white-sage-bibs" data-fabric="organic-cotton" data-baby="bibs">
           <div class="photo">
             <img src="img/baby/little-unicorn-white-sage-bibs.jpg" alt="Organic Cotton Muslin Classic Bib 3 Pack - White Sage" width="600" height="800" loading="lazy">
           </div>
@@ -2681,7 +2726,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Cotton%20Muslin%20Classic%20Bib%203%20Pack%20-%20White%20Sage">Inquire</a>
           </div>
         </article>
-        <article class="card" id="pehr-dijon-puddle-bibs" data-fabric="organic-cotton">
+        <article class="card" id="pehr-dijon-puddle-bibs" data-fabric="organic-cotton" data-baby="bibs">
           <div class="photo">
             <img src="img/baby/pehr-dijon-puddle-bibs.jpg" alt="Muslin Bib Set of 2 - Dijon &amp; Puddle" width="600" height="800" loading="lazy">
           </div>
@@ -2693,7 +2738,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Muslin%20Bib%20Set%20of%202%20-%20Dijon%20%26%20Puddle">Inquire</a>
           </div>
         </article>
-        <article class="card" id="lovedbaby-paddington-bibs" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="lovedbaby-paddington-bibs" data-fabric="organic-cotton" data-country="india" data-baby="bibs">
           <div class="photo">
             <img src="img/baby/lovedbaby-paddington-bibs.jpg" alt="Adventure Paddington™ | Organic Bandana Bib 3-Pack" width="600" height="800" loading="lazy">
           </div>
@@ -2705,7 +2750,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Adventure%20Paddington%20Organic%20Bandana%20Bib%203-Pack">Inquire</a>
           </div>
         </article>
-        <article class="card" id="lovedbaby-stone-blanket" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="lovedbaby-stone-blanket" data-fabric="organic-cotton" data-country="india" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/lovedbaby-stone-blanket.jpg" alt="Stone | Organic Blanket" width="600" height="800" loading="lazy">
           </div>
@@ -2717,7 +2762,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Stone%20%7C%20Organic%20Blanket">Inquire</a>
           </div>
         </article>
-        <article class="card" id="lu-sage-suns" data-fabric="organic-cotton">
+        <article class="card" id="lu-sage-suns" data-fabric="organic-cotton" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/little-unicorn-sage-suns.jpg" alt="Organic Cotton Muslin Swaddle Blanket 2 Pack - Sage Suns" width="600" height="800" loading="lazy">
           </div>
@@ -2729,7 +2774,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Cotton%20Muslin%20Swaddle%20Blanket%202%20Pack%20-%20Sage%20Suns">Inquire</a>
           </div>
         </article>
-        <article class="card" id="babyletto-bassinet-muslin" data-fabric="organic-cotton">
+        <article class="card" id="babyletto-bassinet-muslin" data-fabric="organic-cotton" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/babyletto-bassinet-muslin.jpg" alt="All-Stages Bassinet Sheet in GOTS Certified Organic Muslin Cotton" width="600" height="800" loading="lazy">
           </div>
@@ -2741,7 +2786,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20All-Stages%20Bassinet%20Sheet%20in%20GOTS%20Certified%20Organic%20Muslin%20Cotton">Inquire</a>
           </div>
         </article>
-        <article class="card" id="babyletto-bassinet-brushed" data-fabric="organic-cotton">
+        <article class="card" id="babyletto-bassinet-brushed" data-fabric="organic-cotton" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/babyletto-bassinet-brushed.jpg" alt="All-Stages Bassinet Sheet in GOTS Certified Organic Brushed Cotton" width="600" height="800" loading="lazy">
           </div>
@@ -2753,7 +2798,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20All-Stages%20Bassinet%20Sheet%20in%20GOTS%20Certified%20Organic%20Brushed%20Cotton">Inquire</a>
           </div>
         </article>
-        <article class="card" id="naturepedic-crib-pad" data-fabric="organic-cotton" data-country="pakistan">
+        <article class="card" id="naturepedic-crib-pad" data-fabric="organic-cotton" data-country="pakistan" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/naturepedic-crib-pad.jpg" alt="Waterproof Organic Crib Mattress Protector Pad" width="600" height="800" loading="lazy">
           </div>
@@ -2765,7 +2810,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Waterproof%20Organic%20Crib%20Mattress%20Protector%20Pad">Inquire</a>
           </div>
         </article>
-        <article class="card" id="avocado-crib-protector" data-fabric="organic-cotton" data-country="pakistan">
+        <article class="card" id="avocado-crib-protector" data-fabric="organic-cotton" data-country="pakistan" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/avocado-crib-protector.jpg" alt="Organic Waterproof Crib Mattress Protector" width="600" height="800" loading="lazy">
           </div>
@@ -2777,7 +2822,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Waterproof%20Crib%20Mattress%20Protector">Inquire</a>
           </div>
         </article>
-        <article class="card" id="naturepedic-toddler-pad" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="naturepedic-toddler-pad" data-fabric="organic-cotton" data-country="india" data-baby="bedding">
           <div class="photo">
             <img src="img/baby/naturepedic-toddler-pad.jpg" alt="Waterproof Quilted Organic Cotton Toddler Mattress Pad" width="600" height="800" loading="lazy">
           </div>
@@ -2789,7 +2834,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Waterproof%20Quilted%20Organic%20Cotton%20Toddler%20Mattress%20Pad">Inquire</a>
           </div>
         </article>
-        <article class="card" id="bbb-bento-boxes" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="bbb-bento-boxes" data-fabric="organic-cotton" data-country="india" data-baby="sleepers">
           <div class="photo">
             <img src="img/baby/bbb-bento-boxes-pj.jpg" alt="Bento Boxes Organic Cotton Two-Piece Pajamas" width="600" height="800" loading="lazy">
           </div>
@@ -2801,7 +2846,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Bento%20Boxes%20Organic%20Cotton%20Two-Piece%20Pajamas">Inquire</a>
           </div>
         </article>
-        <article class="card" id="lovedbaby-lets-go" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="lovedbaby-lets-go" data-fabric="organic-cotton" data-country="india" data-baby="sleepers">
           <div class="photo">
             <img src="img/baby/lovedbaby-lets-go-pj.jpg" alt="Let&#x27;s Go | Kids&#x27; Organic PJ Set" width="600" height="800" loading="lazy">
           </div>
@@ -2822,8 +2867,19 @@
         <h2>Household</h2>
         <p>Coyuchi GOTS towels, paperless towels, and napkins, Simple Ecology produce bags, Bee&#x27;s Wrap, and WECK glass. Cleaners and paper follow on this aisle.</p>
       </div>
+      <div class="aisle-types cut-group" data-aisle-types="household">
+        <p class="cut-label">Shop by type</p>
+        <div class="cut-row">
+          <button type="button" class="type-cut-btn" data-aisle-type="household" data-type="">All</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="household" data-type="bath">Bath</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="household" data-type="kitchen">Kitchen</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="household" data-type="reusables">Reusables</button>
+        </div>
+        <p class="cut-status" id="household-cut-status"></p>
+      </div>
+
       <div class="grid">
-        <article class="card featured" id="cloud-loom-towels" data-fabric="organic-cotton" data-country="turkey">
+        <article class="card featured" id="cloud-loom-towels" data-fabric="organic-cotton" data-country="turkey" data-household="bath">
           <div class="photo">
             <img src="img/home/coyuchi-cloud-loom-towels.jpg" alt="Cloud Loom™ Organic Towels" width="600" height="800" loading="lazy">
           </div>
@@ -2835,7 +2891,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Cloud%20Loom%E2%84%A2%20Organic%20Towels">Inquire</a>
           </div>
         </article>
-        <article class="card" id="cloud-loom-washcloth" data-fabric="organic-cotton" data-country="turkey">
+        <article class="card" id="cloud-loom-washcloth" data-fabric="organic-cotton" data-country="turkey" data-household="bath">
           <div class="photo">
             <img src="img/home/coyuchi-cloud-loom-washcloth.jpg" alt="Cloud Loom™ Organic Wash Cloth" width="600" height="800" loading="lazy">
           </div>
@@ -2847,7 +2903,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Cloud%20Loom%E2%84%A2%20Organic%20Wash%20Cloth">Inquire</a>
           </div>
         </article>
-        <article class="card featured" id="coyuchi-waffle-kitchen-towels" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes">
+        <article class="card featured" id="coyuchi-waffle-kitchen-towels" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes" data-household="kitchen">
           <div class="photo">
             <img src="img/home/coyuchi-organic-waffle-kitchen-towels.jpg" alt="Organic Waffle Kitchen Towels, Set of 6" width="600" height="800" loading="lazy">
           </div>
@@ -2859,7 +2915,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Waffle%20Kitchen%20Towels%2C%20Set%20of%206">Inquire</a>
           </div>
         </article>
-        <article class="card featured" id="coyuchi-air-weight" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes">
+        <article class="card featured" id="coyuchi-air-weight" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes" data-household="bath">
           <div class="photo">
             <img src="img/home/coyuchi-air-weight-towels.jpg" alt="Air Weight® Organic Towels" width="600" height="800" loading="lazy">
           </div>
@@ -2871,7 +2927,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Air%20Weight%C2%AE%20Organic%20Towels">Inquire</a>
           </div>
         </article>
-        <article class="card" id="coyuchi-temescal" data-fabric="organic-cotton" data-country="turkey">
+        <article class="card" id="coyuchi-temescal" data-fabric="organic-cotton" data-country="turkey" data-household="bath">
           <div class="photo">
             <img src="img/home/coyuchi-temescal-towels.jpg" alt="Temescal Organic Towels" width="600" height="800" loading="lazy">
           </div>
@@ -2883,7 +2939,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Temescal%20Organic%20Towels">Inquire</a>
           </div>
         </article>
-        <article class="card" id="coyuchi-fillmore" data-fabric="organic-cotton">
+        <article class="card" id="coyuchi-fillmore" data-fabric="organic-cotton" data-household="kitchen">
           <div class="photo">
             <img src="img/home/coyuchi-fillmore-kitchen-towels.jpg" alt="Fillmore Organic Kitchen Towels, Set of 4" width="600" height="800" loading="lazy">
           </div>
@@ -2895,7 +2951,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Fillmore%20Organic%20Kitchen%20Towels%2C%20Set%20of%204">Inquire</a>
           </div>
         </article>
-        <article class="card" id="coyuchi-conserve-paperless" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="coyuchi-conserve-paperless" data-fabric="organic-cotton" data-country="india" data-household="kitchen">
           <div class="photo">
             <img src="img/home/coyuchi-conserve-paperless-towels.jpg" alt="Conserve Organic Paperless Towels" width="600" height="800" loading="lazy">
           </div>
@@ -2907,7 +2963,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Conserve%20Organic%20Paperless%20Towels">Inquire</a>
           </div>
         </article>
-        <article class="card" id="coyuchi-tilden-napkins" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes">
+        <article class="card" id="coyuchi-tilden-napkins" data-fabric="organic-cotton" data-country="india" data-fairtrade="yes" data-household="kitchen">
           <div class="photo">
             <img src="img/home/coyuchi-tilden-napkins.jpg" alt="Tilden Striped Organic Napkins, Set of 4" width="600" height="800" loading="lazy">
           </div>
@@ -2919,7 +2975,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Tilden%20Striped%20Organic%20Napkins%2C%20Set%20of%204">Inquire</a>
           </div>
         </article>
-        <article class="card" id="utc-classic-towel" data-fabric="organic-cotton" data-country="pakistan">
+        <article class="card" id="utc-classic-towel" data-fabric="organic-cotton" data-country="pakistan" data-household="bath">
           <div class="photo">
             <img src="img/home/utc-classic-organic-towel-white.jpg" alt="Classic Organic Towel - White" width="600" height="800" loading="lazy">
           </div>
@@ -2931,7 +2987,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Classic%20Organic%20Towel%20-%20White">Inquire</a>
           </div>
         </article>
-        <article class="card featured" id="bees-wrap-large" data-fabric="organic-cotton">
+        <article class="card featured" id="bees-wrap-large" data-fabric="organic-cotton" data-household="kitchen">
           <div class="photo">
             <img src="img/home/bees-wrap-large.jpg" alt="Large Wrap" width="600" height="800" loading="lazy">
           </div>
@@ -2943,7 +2999,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Bee%27s%20Wrap%20Large%20Wrap">Inquire</a>
           </div>
         </article>
-        <article class="card" id="weck-744">
+        <article class="card" id="weck-744" data-household="kitchen">
           <div class="photo">
             <img src="img/home/weck-744-tulip-jar.jpg" alt="744 - 1/2 L Tulip Jar (Set of 6)" width="600" height="800" loading="lazy">
           </div>
@@ -2955,7 +3011,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20WECK%20744%20Tulip%20Jar">Inquire</a>
           </div>
         </article>
-        <article class="card" id="bambu-kitchen-basics">
+        <article class="card" id="bambu-kitchen-basics" data-household="kitchen">
           <div class="photo">
             <img src="img/home/bambu-kitchen-basics.jpg" alt="Kitchen Basics, Set of 3 Bamboo Cooking Utensils" width="600" height="800" loading="lazy">
           </div>
@@ -2967,7 +3023,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20bambu%20Kitchen%20Basics%2C%20Set%20of%203%20Bamboo%20Cooking%20Utensils">Inquire</a>
           </div>
         </article>
-        <article class="card" id="bambu-reusable-cutlery">
+        <article class="card" id="bambu-reusable-cutlery" data-household="kitchen">
           <div class="photo">
             <img src="img/home/bambu-reusable-cutlery-set.jpg" alt="Reusable Bamboo Spoon, Knife &amp; Fork Set" width="600" height="800" loading="lazy">
           </div>
@@ -2979,7 +3035,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20bambu%20Reusable%20Bamboo%20Spoon%2C%20Knife%20%26%20Fork%20Set">Inquire</a>
           </div>
         </article>
-        <article class="card" id="simple-ecology-produce-bags" data-fabric="organic-cotton" data-country="india">
+        <article class="card" id="simple-ecology-produce-bags" data-fabric="organic-cotton" data-country="india" data-household="kitchen">
           <div class="photo">
             <img src="img/home/simple-ecology-produce-bags.jpg" alt="Mesh &amp; Muslin Reusable Produce Bag Sets" width="600" height="800" loading="lazy">
           </div>
@@ -2991,7 +3047,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Simple%20Ecology%20Mesh%20%26%20Muslin%20Reusable%20Produce%20Bag%20Sets">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-household="bath">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -3002,7 +3058,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20towels">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-household="bath">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -3013,7 +3069,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20washcloths">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-household="bath">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -3024,7 +3080,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20bath%20mats">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-household="kitchen">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -3035,7 +3091,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20cotton%20dish%20towels">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-household="kitchen">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -3046,7 +3102,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Bamboo%20cutting%20boards">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-household="reusables">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -3057,7 +3113,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Reusable%20bags">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-household="reusables">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -3733,18 +3789,19 @@
         <h2>Beauty</h2>
         <p>Named body, face, SPF, cotton rounds, and official doTERRA skin / topical from official brand pages. Shop by type below.</p>
       </div>
-      <div class="beauty-types cut-group">
+      <div class="aisle-types beauty-types cut-group" data-aisle-types="beauty">
         <p class="cut-label">Shop by type</p>
         <div class="cut-row">
-          <button type="button" class="beauty-cut-btn" data-beauty-cut="face">Face / facial cleansing</button>
-          <button type="button" class="beauty-cut-btn" data-beauty-cut="makeup">Makeup</button>
-          <button type="button" class="beauty-cut-btn" data-beauty-cut="hair">Hair</button>
-          <button type="button" class="beauty-cut-btn" data-beauty-cut="body">Body + skin balm</button>
-          <button type="button" class="beauty-cut-btn" data-beauty-cut="spf">SPF</button>
-          <button type="button" class="beauty-cut-btn" data-beauty-cut="deodorant">Deodorant</button>
-          <button type="button" class="beauty-cut-btn" data-beauty-cut="lips">Lips</button>
-          <button type="button" class="beauty-cut-btn" data-beauty-cut="oral">Oral</button>
-          <button type="button" class="beauty-cut-btn" data-beauty-cut="hands">Hands</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="" data-beauty-cut="">All</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="face" data-beauty-cut="face">Face / facial cleansing</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="makeup" data-beauty-cut="makeup">Makeup</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="hair" data-beauty-cut="hair">Hair</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="body" data-beauty-cut="body">Body + skin balm</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="spf" data-beauty-cut="spf">SPF</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="deodorant" data-beauty-cut="deodorant">Deodorant</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="lips" data-beauty-cut="lips">Lips</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="oral" data-beauty-cut="oral">Oral</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="hands" data-beauty-cut="hands">Hands</button>
         </div>
         <p class="cut-status" id="beauty-cut-status"></p>
       </div>
@@ -4047,12 +4104,25 @@
         <h2>Health</h2>
         <p>Named oils, blends, kits, topical, and wellness pack from official doTERRA pages. CPTG is not USDA Organic. As labeled. No medical claims.</p>
       </div>
+      <div class="aisle-types cut-group" data-aisle-types="health">
+        <p class="cut-label">Shop by type</p>
+        <div class="cut-row">
+          <button type="button" class="type-cut-btn" data-aisle-type="health" data-type="">All</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="health" data-type="daily">Daily wellness</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="health" data-type="oils">Oils</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="health" data-type="blends">Blends</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="health" data-type="kits">Kits</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="health" data-type="topical">Topical</button>
+        </div>
+        <p class="cut-status" id="health-cut-status"></p>
+      </div>
+
       <div class="brand-line">
         <h3>doTERRA wellness</h3>
         <p>Official doterra.com. Oils, blends, kits, topical, and named wellness pack only. CPTG is not USDA Organic. As labeled. Buy links use the official OwnerID sponsor parameter. No enrollment kits, MetaPWR, GX Assist, On Guard+ softgels, Adaptiv capsules, or Deep Blue Polyphenol.</p>
       </div>
       <div class="grid">
-        <article class="card" id="doterra-lifelong-vitality">
+        <article class="card" id="doterra-lifelong-vitality" data-health="daily">
           <div class="photo">
             <img src="img/doterra/llv.jpg" alt="doTERRA Lifelong Vitality Pack" width="600" height="800" loading="lazy">
           </div>
@@ -4068,7 +4138,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-alpha-crs-plus">
+        <article class="card" id="doterra-alpha-crs-plus" data-health="daily">
           <div class="photo">
             <img src="img/doterra/alpha-crs-plus.jpg" alt="Alpha CRS+" width="600" height="800" loading="lazy">
           </div>
@@ -4084,7 +4154,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-microplex-vmz">
+        <article class="card" id="doterra-microplex-vmz" data-health="daily">
           <div class="photo">
             <img src="img/doterra/microplex-vmz.jpg" alt="Microplex VMz" width="600" height="800" loading="lazy">
           </div>
@@ -4100,7 +4170,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-eo-mega-plus">
+        <article class="card" id="doterra-eo-mega-plus" data-health="daily">
           <div class="photo">
             <img src="img/doterra/eo-mega-plus.jpg" alt="EO Mega+" width="600" height="800" loading="lazy">
           </div>
@@ -4116,7 +4186,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-terrazyme">
+        <article class="card" id="doterra-terrazyme" data-health="daily">
           <div class="photo">
             <img src="img/doterra/terrazyme.jpg" alt="doTERRA TerraZyme" width="600" height="800" loading="lazy">
           </div>
@@ -4132,7 +4202,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-deep-blue-rub">
+        <article class="card" id="doterra-deep-blue-rub" data-health="topical">
           <div class="photo">
             <img src="img/doterra/deep-blue-rub.jpg" alt="Deep Blue Rub" width="600" height="800" loading="lazy">
           </div>
@@ -4148,7 +4218,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-family-essentials">
+        <article class="card" id="doterra-family-essentials" data-health="kits">
           <div class="photo">
             <img src="img/doterra/family-essentials-kit.jpg" alt="Family Essentials Kit" width="600" height="800" loading="lazy">
           </div>
@@ -4164,7 +4234,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-beginners-trio">
+        <article class="card" id="doterra-beginners-trio" data-health="kits">
           <div class="photo">
             <img src="img/doterra/beginners-trio.jpg" alt="Beginner&#x27;s Trio Kit" width="600" height="800" loading="lazy">
           </div>
@@ -4180,7 +4250,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-lavender">
+        <article class="card" id="doterra-lavender" data-health="oils">
           <div class="photo">
             <img src="img/doterra/lavender.jpg" alt="Lavender Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4196,7 +4266,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-lemon">
+        <article class="card" id="doterra-lemon" data-health="oils">
           <div class="photo">
             <img src="img/doterra/lemon.jpg" alt="Lemon Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4212,7 +4282,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-peppermint">
+        <article class="card" id="doterra-peppermint" data-health="oils">
           <div class="photo">
             <img src="img/doterra/peppermint.jpg" alt="Peppermint Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4228,7 +4298,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-tea-tree">
+        <article class="card" id="doterra-tea-tree" data-health="oils">
           <div class="photo">
             <img src="img/doterra/tea-tree.jpg" alt="Tea Tree Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4244,7 +4314,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-oregano">
+        <article class="card" id="doterra-oregano" data-health="oils">
           <div class="photo">
             <img src="img/doterra/oregano.jpg" alt="Oregano Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4260,7 +4330,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-frankincense">
+        <article class="card" id="doterra-frankincense" data-health="oils">
           <div class="photo">
             <img src="img/doterra/frankincense.jpg" alt="Frankincense Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4276,7 +4346,7 @@
             </span>
           </div>
         </article>
-        <article class="card featured" id="doterra-on-guard-oil">
+        <article class="card featured" id="doterra-on-guard-oil" data-health="blends">
           <div class="photo">
             <img src="img/doterra/on-guard-oil.jpg" alt="doTERRA On Guard Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4292,7 +4362,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-deep-blue">
+        <article class="card" id="doterra-deep-blue" data-health="blends">
           <div class="photo">
             <img src="img/doterra/deep-blue.jpg" alt="Deep Blue Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4308,7 +4378,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-breathe">
+        <article class="card" id="doterra-breathe" data-health="blends">
           <div class="photo">
             <img src="img/doterra/breathe.jpg" alt="doTERRA Breathe Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4324,7 +4394,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-digestzen">
+        <article class="card" id="doterra-digestzen" data-health="blends">
           <div class="photo">
             <img src="img/doterra/digestzen.jpg" alt="DigestZen Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4340,7 +4410,7 @@
             </span>
           </div>
         </article>
-        <article class="card" id="doterra-adaptiv">
+        <article class="card" id="doterra-adaptiv" data-health="blends">
           <div class="photo">
             <img src="img/doterra/adaptiv.jpg" alt="Adaptiv Essential Oil" width="600" height="800" loading="lazy">
           </div>
@@ -4364,8 +4434,20 @@
         <h2>Sleep/Home</h2>
         <p>Named organic cotton first. Materials still under audit.</p>
       </div>
+      <div class="aisle-types cut-group" data-aisle-types="sleep">
+        <p class="cut-label">Shop by type</p>
+        <div class="cut-row">
+          <button type="button" class="type-cut-btn" data-aisle-type="sleep" data-type="">All</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="sleep" data-type="sheets">Sheets</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="sleep" data-type="blankets">Blankets</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="sleep" data-type="sleepwear">Sleepwear</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="sleep" data-type="pillows">Pillows + masks</button>
+        </div>
+        <p class="cut-status" id="sleep-cut-status"></p>
+      </div>
+
       <div class="grid">
-        <article class="card" id="coyuchi-sheets" data-fabric="organic-cotton">
+        <article class="card" id="coyuchi-sheets" data-fabric="organic-cotton" data-sleep="sheets">
           <div class="photo">
             <img src="img/sleep/coyuchi-crinkled-percale-sheet-set.jpg" alt="Organic Crinkled Percale™ Sheet Set" width="600" height="800" loading="lazy">
           </div>
@@ -4377,7 +4459,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20Crinkled%20Percale%E2%84%A2%20Sheet%20Set">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton">
+        <article class="card" data-fabric="organic-cotton" data-sleep="sheets">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -4388,7 +4470,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Signature%20Hemmed%20Sheet%20Set">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton" data-fairtrade="yes">
+        <article class="card" data-fabric="organic-cotton" data-fairtrade="yes" data-sleep="blankets">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -4399,7 +4481,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Cotton%20Napper%20%2810/15/20/25%20lb%29">Inquire</a>
           </div>
         </article>
-        <article class="card" data-fabric="organic-cotton" data-fairtrade="yes">
+        <article class="card" data-fabric="organic-cotton" data-fairtrade="yes" data-sleep="sleepwear">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -4421,7 +4503,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20cotton%20bedding">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-sleep="pillows">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -4432,7 +4514,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20cotton%20pillows">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-sleep="blankets">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -4443,7 +4525,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Organic%20cotton%20blankets">Inquire</a>
           </div>
         </article>
-        <article class="card">
+        <article class="card" data-sleep="pillows">
           <div class="mark" aria-hidden="true">
             <svg viewBox="0 0 48 48"><path d="M16 12h16v6H16z"/><path d="M14 18h20v18H14z"/></svg>
           </div>
@@ -4462,8 +4544,19 @@
         <h2>Grocery</h2>
         <p>Named coffees, chocolate, and wild rice on this page. <a href="/grocery/">Full pantry</a>.</p>
       </div>
+      <div class="aisle-types cut-group" data-aisle-types="grocery">
+        <p class="cut-label">Shop by type</p>
+        <div class="cut-row">
+          <button type="button" class="type-cut-btn" data-aisle-type="grocery" data-type="">All</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="grocery" data-type="coffee">Coffee</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="grocery" data-type="chocolate">Chocolate</button>
+          <button type="button" class="type-cut-btn" data-aisle-type="grocery" data-type="pantry">Pantry</button>
+        </div>
+        <p class="cut-status" id="grocery-cut-status"></p>
+      </div>
+
       <div class="grid">
-        <article class="card" id="ee-colombian-coffee" data-country="colombia" data-indigenous="yes">
+        <article class="card" id="ee-colombian-coffee" data-country="colombia" data-indigenous="yes" data-grocery="coffee">
           <div class="photo">
             <img src="img/grocery/equal-exchange-organic-colombian-coffee.jpg" alt="Organic Colombian Coffee, 12oz bag" width="600" height="800" loading="lazy">
           </div>
@@ -4475,7 +4568,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Equal%20Exchange%20Organic%20Colombian%20Coffee%2C%2012oz">Inquire</a>
           </div>
         </article>
-        <article class="card" id="ee-guatemala-coffee" data-country="guatemala" data-indigenous="yes">
+        <article class="card" id="ee-guatemala-coffee" data-country="guatemala" data-indigenous="yes" data-grocery="coffee">
           <div class="photo">
             <img src="img/grocery/equal-exchange-organic-guatemala-light-roast.jpg" alt="Organic Guatemala Light Roast Coffee, 12oz whole bean" width="600" height="800" loading="lazy">
           </div>
@@ -4487,7 +4580,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Equal%20Exchange%20Organic%20Guatemala%20Light%20Roast%2C%2012oz">Inquire</a>
           </div>
         </article>
-        <article class="card" id="ee-extreme-dark-chocolate-88" data-indigenous="yes">
+        <article class="card" id="ee-extreme-dark-chocolate-88" data-indigenous="yes" data-grocery="chocolate">
           <div class="photo">
             <img src="img/grocery/equal-exchange-organic-extreme-dark-88.jpg" alt="Organic Extreme Dark Chocolate, 88% cacao" width="600" height="800" loading="lazy">
           </div>
@@ -4499,7 +4592,7 @@
             <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Equal%20Exchange%20Organic%20Extreme%20Dark%20Chocolate%2088%25">Inquire</a>
           </div>
         </article>
-        <article class="card" id="native-harvest-wild-rice-manoomin" data-indigenous="yes">
+        <article class="card" id="native-harvest-wild-rice-manoomin" data-indigenous="yes" data-grocery="pantry">
           <div class="photo">
             <img src="img/grocery/native-harvest-wild-rice-manoomin.jpg" alt="Wild Rice - Manoomin" width="600" height="800" loading="lazy">
           </div>
@@ -4624,74 +4717,208 @@
       history.replaceState(null, "", url);
     };
 
+
+    const aisleTypeConfigs = {
+      clothes: {
+        sectionId: "wear",
+        hashPrefix: "clothes-type-",
+        clearHash: "wear",
+        attr: "data-clothes",
+        labels: {
+          tops: "Tops",
+          dresses: "Dresses",
+          bottoms: "Bottoms",
+          underwear: "Underwear + bras",
+          lounge: "Lounge + nightwear",
+          socks: "Socks",
+          shoes: "Shoes",
+          outerwear: "Outerwear"
+        }
+      },
+      baby: {
+        sectionId: "baby",
+        hashPrefix: "baby-type-",
+        clearHash: "baby",
+        attr: "data-baby",
+        labels: {
+          bodysuits: "Bodysuits",
+          sleepers: "Sleepers + PJs",
+          clothes: "Clothes",
+          socks: "Socks",
+          bibs: "Bibs",
+          bedding: "Bedding"
+        }
+      },
+      household: {
+        sectionId: "household",
+        hashPrefix: "household-type-",
+        clearHash: "household",
+        attr: "data-household",
+        hideIdsWhenTyped: ["cleaning"],
+        labels: {
+          bath: "Bath",
+          kitchen: "Kitchen",
+          reusables: "Reusables"
+        }
+      },
+      beauty: {
+        sectionId: "beauty",
+        hashPrefix: "beauty-type-",
+        clearHash: "beauty",
+        attr: "data-beauty",
+        emptyTypes: ["makeup", "hair"],
+        labels: {
+          face: "Face / facial cleansing",
+          makeup: "Makeup",
+          hair: "Hair",
+          body: "Body + skin balm",
+          spf: "SPF",
+          deodorant: "Deodorant",
+          lips: "Lips",
+          oral: "Oral",
+          hands: "Hands"
+        }
+      },
+      health: {
+        sectionId: "health",
+        hashPrefix: "health-type-",
+        clearHash: "health",
+        attr: "data-health",
+        labels: {
+          daily: "Daily wellness",
+          oils: "Oils",
+          blends: "Blends",
+          kits: "Kits",
+          topical: "Topical"
+        }
+      },
+      sleep: {
+        sectionId: "sleep",
+        hashPrefix: "sleep-type-",
+        clearHash: "sleep",
+        attr: "data-sleep",
+        labels: {
+          sheets: "Sheets",
+          blankets: "Blankets",
+          sleepwear: "Sleepwear",
+          pillows: "Pillows + masks"
+        }
+      },
+      grocery: {
+        sectionId: "grocery-named",
+        hashPrefix: "grocery-type-",
+        clearHash: "grocery-named",
+        attr: "data-grocery",
+        labels: {
+          coffee: "Coffee",
+          chocolate: "Chocolate",
+          pantry: "Pantry"
+        }
+      }
+    };
+
+    const clearTypeHidden = () => {
+      document.querySelectorAll(".is-type-hidden, .is-beauty-hidden").forEach((el) => {
+        el.classList.remove("is-type-hidden", "is-beauty-hidden");
+      });
+    };
+
+    const applyAisleType = (key, type) => {
+      const isOn = Boolean(key && type);
+      document.body.classList.toggle("is-aisle-type", isOn);
+      document.body.classList.toggle("is-beauty-cut", key === "beauty" && isOn);
+      document.querySelectorAll(".aisle-types").forEach((group) => {
+        group.classList.toggle("is-filtering", group.getAttribute("data-aisle-types") === key && isOn);
+      });
+      document.querySelectorAll(".type-cut-btn").forEach((btn) => {
+        const on = isOn && btn.dataset.aisleType === key && btn.dataset.type === type;
+        btn.classList.toggle("is-on", on);
+      });
+      document.querySelectorAll(".beauty-cut-btn").forEach((btn) => {
+        const cut = btn.dataset.beautyCut || "";
+        btn.classList.toggle("is-on", key === "beauty" && isOn && cut === type);
+      });
+      clearTypeHidden();
+      document.querySelectorAll(".aisle-types .cut-status").forEach((el) => {
+        el.textContent = "";
+      });
+      if (!isOn) return;
+      const cfg = aisleTypeConfigs[key];
+      if (!cfg) return;
+      const aisle = document.getElementById(cfg.sectionId);
+      if (!aisle) return;
+      aisle.querySelectorAll(".card").forEach((card) => {
+        const match = card.getAttribute(cfg.attr) === type;
+        card.classList.toggle("is-type-hidden", !match);
+        if (key === "beauty") card.classList.toggle("is-beauty-hidden", !match);
+      });
+      aisle.querySelectorAll(".brand-line").forEach((line) => {
+        const grid = line.nextElementSibling;
+        if (!grid || !grid.classList.contains("grid")) return;
+        const cards = [...grid.querySelectorAll(".card")];
+        const any = cards.some((card) => !card.classList.contains("is-type-hidden") && !card.classList.contains("is-hidden"));
+        const hide = !any;
+        line.classList.toggle("is-type-hidden", hide);
+        grid.classList.toggle("is-type-hidden", hide);
+        if (key === "beauty") {
+          line.classList.toggle("is-beauty-hidden", hide);
+          grid.classList.toggle("is-beauty-hidden", hide);
+        }
+      });
+      aisle.querySelectorAll(".beauty-shell, .type-shell").forEach((shell) => {
+        const shellType = shell.getAttribute("data-beauty-shell") || shell.getAttribute("data-type-shell");
+        const show = shellType === type;
+        shell.classList.toggle("is-type-hidden", !show);
+        if (key === "beauty") shell.classList.toggle("is-beauty-hidden", !show);
+      });
+      aisle.querySelectorAll(".ig-block, .aisle-note").forEach((el) => {
+        el.classList.add("is-type-hidden");
+      });
+      (cfg.hideIdsWhenTyped || []).forEach((id) => {
+        const extra = document.getElementById(id);
+        if (extra) extra.classList.add("is-type-hidden");
+      });
+      const status = document.getElementById(key + "-cut-status");
+      if (status) {
+        const label = cfg.labels[type] || type;
+        status.textContent = (cfg.emptyTypes || []).includes(type)
+          ? label + ". Products post when the list lands."
+          : "Showing " + label + ".";
+      }
+    };
+
+    const applyBeautyType = (type) => {
+      applyAisleType(type ? "beauty" : "", type || "");
+    };
+
+    const setAisleType = (key, type, push) => {
+      applyAisleType(key, type);
+      if (!push) return;
+      const cfg = aisleTypeConfigs[key] || aisleTypeConfigs.beauty;
+      const url = new URL(window.location.href);
+      url.hash = type ? cfg.hashPrefix + type : (cfg.clearHash || "");
+      history.replaceState(null, "", url);
+    };
+
     cutButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        applyBeautyType("");
+        applyAisleType("", "");
         const next = btn.classList.contains("is-on") ? "" : btn.dataset.cut;
         setCut(next, true);
         document.getElementById("specialty").scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
 
-    const beautyAisle = document.getElementById("beauty");
-    const beautyButtons = [...document.querySelectorAll(".beauty-cut-btn")];
-    const beautyStatus = document.getElementById("beauty-cut-status");
-    const beautyLabels = {
-      face: "Face / facial cleansing",
-      makeup: "Makeup",
-      hair: "Hair",
-      body: "Body + skin balm",
-      spf: "SPF",
-      deodorant: "Deodorant",
-      lips: "Lips",
-      oral: "Oral",
-      hands: "Hands"
-    };
-
-    const applyBeautyType = (type) => {
-      document.body.classList.toggle("is-beauty-cut", Boolean(type));
-      beautyButtons.forEach((btn) => btn.classList.toggle("is-on", btn.dataset.beautyCut === type));
-      if (!beautyAisle) return;
-      beautyAisle.querySelectorAll(".card").forEach((card) => {
-        const match = !type || card.getAttribute("data-beauty") === type;
-        card.classList.toggle("is-beauty-hidden", Boolean(type) && !match);
-      });
-      beautyAisle.querySelectorAll(".brand-line").forEach((line) => {
-        const grid = line.nextElementSibling;
-        if (!grid || !grid.classList.contains("grid")) return;
-        const cards = [...grid.querySelectorAll(".card")];
-        const any = cards.some((card) => !card.classList.contains("is-beauty-hidden") && !card.classList.contains("is-hidden"));
-        const hide = Boolean(type) && !any;
-        line.classList.toggle("is-beauty-hidden", hide);
-        grid.classList.toggle("is-beauty-hidden", hide);
-      });
-      beautyAisle.querySelectorAll(".beauty-shell").forEach((shell) => {
-        const show = !type || shell.getAttribute("data-beauty-shell") === type;
-        shell.classList.toggle("is-beauty-hidden", !show);
-      });
-      if (beautyStatus) {
-        beautyStatus.textContent = type
-          ? (type === "makeup" || type === "hair"
-              ? beautyLabels[type] + ". Products post when the list lands."
-              : "Showing " + (beautyLabels[type] || type) + ".")
-          : "";
-      }
-    };
-
-    const setBeautyType = (type, push) => {
-      applyBeautyType(type);
-      if (!push) return;
-      const url = new URL(window.location.href);
-      url.hash = type ? "beauty-type-" + type : "beauty";
-      history.replaceState(null, "", url);
-    };
-
-    beautyButtons.forEach((btn) => {
+    document.querySelectorAll(".type-cut-btn").forEach((btn) => {
       btn.addEventListener("click", () => {
         applyCut("");
-        const next = btn.classList.contains("is-on") ? "" : btn.dataset.beautyCut;
-        setBeautyType(next, true);
-        beautyAisle.scrollIntoView({ behavior: "smooth", block: "start" });
+        const key = btn.dataset.aisleType;
+        const clicked = btn.dataset.type || "";
+        const next = !clicked || btn.classList.contains("is-on") ? "" : clicked;
+        setAisleType(key, next, true);
+        const cfg = aisleTypeConfigs[key];
+        const aisle = cfg ? document.getElementById(cfg.sectionId) : null;
+        if (aisle) aisle.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     });
 
@@ -4704,25 +4931,29 @@
       return known.includes(mapped) ? mapped : "";
     };
 
-    const readHashBeauty = () => {
+    const readHashAisleType = () => {
       const hash = decodeURIComponent(location.hash.replace("#", ""));
-      if (!hash.startsWith("beauty-type-")) return "";
-      const type = hash.slice("beauty-type-".length);
-      return beautyLabels[type] ? type : "";
+      for (const [key, cfg] of Object.entries(aisleTypeConfigs)) {
+        if (hash.startsWith(cfg.hashPrefix)) {
+          const type = hash.slice(cfg.hashPrefix.length);
+          if (cfg.labels[type]) return { key, type };
+        }
+      }
+      return { key: "", type: "" };
     };
 
-    const bootBeauty = readHashBeauty();
+    const bootType = readHashAisleType();
     const bootCut = readHashCut();
-    if (bootBeauty) applyBeautyType(bootBeauty);
+    if (bootType.type) applyAisleType(bootType.key, bootType.type);
     else if (bootCut) applyCut(bootCut);
     window.addEventListener("hashchange", () => {
-      const beauty = readHashBeauty();
-      if (beauty) {
+      const typed = readHashAisleType();
+      if (typed.type) {
         applyCut("");
-        applyBeautyType(beauty);
+        applyAisleType(typed.key, typed.type);
         return;
       }
-      applyBeautyType("");
+      applyAisleType("", "");
       applyCut(readHashCut());
     });
   </script>
