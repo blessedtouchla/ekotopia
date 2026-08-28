@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f3eee4">
+  <meta name="description" content="EKOTOPIA Beauty — named body, face, SPF, and skin care. Catalog + inquire only.">
+  <title>Beauty · EKOTOPIA</title>
+  <link rel="canonical" href="https://ekotopia.co/beauty/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/site.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="brand" href="/">
+        <div class="brand-mark">
+          <strong>EKOTOPIA</strong>
+          <span>Organic goods</span>
+        </div>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Site">
+        <a href="/">Home</a>
+        <div class="nav-shop is-current">
+          <button class="nav-shop-btn" type="button" aria-expanded="false" aria-controls="shop-menu">Shop</button>
+          <div class="nav-shop-menu" id="shop-menu">
+          <a href="/clothes/">Clothes</a>
+          <a href="/baby/">Baby</a>
+          <a href="/household/">Household</a>
+          <a href="/beauty/" aria-current="page">Beauty</a>
+          <a href="/health/">Health</a>
+          <a href="/sleep/">Sleep/Home</a>
+          <a href="/grocery/">Grocery</a>
+          </div>
+        </div>
+        <a href="/about/">About</a>
+        <a href="/contact/">Contact</a>
+        <a class="ig-follow ig-follow-nav" href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.4" cy="6.6" r="0.9" fill="currentColor" stroke="none"/></svg>
+          <span>@ekotopia.co</span>
+        </a>
+        <a class="inquire-cta" href="/contact/">Inquire</a>
+      </nav>
+    </header>
+    <nav class="aisle-bar" aria-label="Shop aisles">
+      <a href="/clothes/">Clothes</a>
+      <a href="/baby/">Baby</a>
+      <a href="/household/">Household</a>
+      <a href="/beauty/" class="is-active">Beauty</a>
+      <a href="/health/">Health</a>
+      <a href="/sleep/">Sleep/Home</a>
+      <a href="/grocery/">Grocery</a>
+    </nav>
+
+    <section class="aisle" id="beauty">
+      <div class="aisle-head">
+        <h2>Beauty</h2>
+        <p>Named body, face, SPF, cotton rounds, and official doTERRA skin / topical from official brand pages. Shop by type below.</p>
+      </div>
+      <div class="aisle-types beauty-types cut-group" data-aisle-types="beauty">
+        <p class="cut-label">Shop by type</p>
+        <div class="cut-row">
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="" data-beauty-cut="">All</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="face" data-beauty-cut="face">Face / facial cleansing</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="makeup" data-beauty-cut="makeup">Makeup</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="hair" data-beauty-cut="hair">Hair</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="body" data-beauty-cut="body">Body + skin balm</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="spf" data-beauty-cut="spf">SPF</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="deodorant" data-beauty-cut="deodorant">Deodorant</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="lips" data-beauty-cut="lips">Lips</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="oral" data-beauty-cut="oral">Oral</button>
+          <button type="button" class="type-cut-btn beauty-cut-btn" data-aisle-type="beauty" data-type="hands" data-beauty-cut="hands">Hands</button>
+        </div>
+        <p class="cut-status" id="beauty-cut-status"></p>
+      </div>
+      <div class="beauty-shell" data-beauty-shell="makeup" id="beauty-makeup">
+        <h3>Makeup</h3>
+        <p>Makeup posts when the list lands.</p>
+      </div>
+      <div class="beauty-shell" data-beauty-shell="hair" id="beauty-hair">
+        <h3>Hair</h3>
+        <p>Dedicated shampoo and conditioner post when the list lands. Dr. Bronner&#x27;s Peppermint Pure-Castile stays under Body + skin balm as 18-in-1 / as labeled — not retitled as shampoo.</p>
+      </div>
+      <div class="brand-line">
+        <h3>Dr. Bronner&#x27;s</h3>
+        <p>Official drbronner.com. Organic oils and fair trade only where that opened PDP says so. USDA Organic only on the Peppermint lip balm — that PDP names USDA NOP. Lotion and toothpaste stay off a USDA Organic tag.</p>
+      </div>
+      <div class="grid">
+        <article class="card" id="bronner-peppermint-castile-beauty" data-fairtrade="yes" data-beauty="body">
+          <div class="photo">
+            <img src="/img/cleaning/bronner-peppermint-castile.jpg" alt="Peppermint - Pure-Castile Magic Soap" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Peppermint - Pure-Castile Magic Soap</h3>
+          <p class="what">Dr. Bronner&#x27;s — official 18-in-1 Pure-Castile. Body wash and hair on that 18-in-1 line. Organic oils, fair trade, and EWG Verified on that PDP. Not a USDA Organic product tag.</p>
+          <p class="fiber">ROC oils · fair trade · EWG Verified</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Peppermint%20-%20Pure-Castile%20Magic%20Soap">Inquire</a>
+          </div>
+        </article>
+        <article class="card" id="bronner-peppermint-castile-bar" data-fairtrade="yes" data-beauty="body">
+          <div class="photo">
+            <img src="/img/beauty/bronner-peppermint-castile-bar.jpg" alt="Peppermint - Pure-Castile Magic Bar Soap" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Peppermint - Pure-Castile Magic Bar Soap</h3>
+          <p class="what">Dr. Bronner&#x27;s — official Peppermint Pure-Castile bar. Organic oils, fair trade, and EWG Verified on that PDP. Not a USDA Organic product tag.</p>
+          <p class="fiber">ROC oils · fair trade · EWG Verified</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Peppermint%20-%20Pure-Castile%20Magic%20Bar%20Soap">Inquire</a>
+          </div>
+        </article>
+        <article class="card" id="bronner-peppermint-organic-lotion" data-fairtrade="yes" data-beauty="body">
+          <div class="photo">
+            <img src="/img/beauty/bronner-peppermint-organic-lotion.jpg" alt="Peppermint - Organic Lotions" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Peppermint - Organic Lotions</h3>
+          <p class="what">Dr. Bronner&#x27;s — official Peppermint Organic Lotion. Organic jojoba, coconut, hemp, and avocado oils on that PDP. Fair trade ingredients on that page. No USDA Organic tag — that opened PDP did not print a USDA seal.</p>
+          <p class="fiber">organic oils · fair trade</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Peppermint%20-%20Organic%20Lotions">Inquire</a>
+          </div>
+        </article>
+        <article class="card" id="bronner-peppermint-organic-lip-balm" data-fairtrade="yes" data-beauty="lips">
+          <div class="photo">
+            <img src="/img/beauty/bronner-peppermint-organic-lip-balm.jpg" alt="Peppermint - Organic Lip Balms" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Peppermint - Organic Lip Balms</h3>
+          <p class="what">Dr. Bronner&#x27;s — official Peppermint Organic Lip Balm. Certified organic to USDA National Organic Program standards on that PDP. Organic beeswax and oils. Fair trade ingredients on that page.</p>
+          <p class="fiber">USDA NOP certified organic · fair trade</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Peppermint%20-%20Organic%20Lip%20Balms">Inquire</a>
+          </div>
+        </article>
+        <article class="card" id="bronner-peppermint-toothpaste" data-fairtrade="yes" data-beauty="oral">
+          <div class="photo">
+            <img src="/img/beauty/bronner-peppermint-all-one-toothpaste.jpg" alt="Peppermint - All-One Toothpaste" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Peppermint - All-One Toothpaste</h3>
+          <p class="what">Dr. Bronner&#x27;s — official Peppermint All-One toothpaste. 70% organic ingredients and fair trade organic coconut oil on that PDP. No USDA seal on that opened page.</p>
+          <p class="fiber">70% organic ingredients · fair trade coconut oil</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Peppermint%20-%20All-One%20Toothpaste">Inquire</a>
+          </div>
+        </article>
+      </div>
+      <div class="brand-line">
+        <h3>Weleda</h3>
+        <p>Official weleda.com. NATRUE only — not USDA Organic.</p>
+      </div>
+      <div class="grid">
+        <article class="card" id="weleda-skin-food-cleanser" data-beauty="face">
+          <div class="photo">
+            <img src="/img/beauty/weleda-skin-food-oil-to-milk-cleanser.jpg" alt="Skin Food Face Care Nourishing 2-in-1 Cleanser &amp; Mask" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Skin Food Face Care Nourishing 2-in-1 Cleanser &amp; Mask</h3>
+          <p class="what">Weleda — official Skin Food oil-to-milk cleanser on that brand page. Starts as oil and rinses as milk. NATRUE. Not USDA Organic.</p>
+          <p class="fiber">NATRUE — not USDA Organic</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Weleda%20Skin%20Food%20Face%20Care%20Nourishing%202-in-1%20Cleanser%20%26%20Mask">Inquire</a>
+          </div>
+        </article>
+        <article class="card featured" id="weleda-citrus-deodorant" data-beauty="deodorant">
+          <div class="photo">
+            <img src="/img/beauty/weleda-citrus-deodorant.jpg" alt="Citrus Deodorant" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Citrus Deodorant</h3>
+          <p class="what">Weleda — official Citrus Deodorant. Bestseller on that brand page. Aluminum-salt free on that PDP. NATRUE is brand-level. Not USDA Organic.</p>
+          <p class="fiber">aluminum-salt free · NATRUE brand-level</p>
+          <div class="row">
+            <span class="chip live bestseller">bestseller</span>
+            <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Weleda%20Citrus%20Deodorant">Inquire</a>
+          </div>
+        </article>
+      </div>
+      <div class="brand-line">
+        <h3>Sky Organics</h3>
+        <p>Official skyorganics.com. Organic cotton rounds only. No GOTS wording on this tile.</p>
+      </div>
+      <div class="grid">
+        <article class="card" id="sky-organics-cotton-rounds" data-fabric="organic-cotton" data-beauty="face">
+          <div class="photo">
+            <img src="/img/beauty/sky-organics-organic-cotton-rounds.jpg" alt="Organic Cotton Rounds" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Organic Cotton Rounds</h3>
+          <p class="what">Sky Organics — official Organic Cotton Rounds. 100% pure organic cotton on that PDP. Certified organic cotton. No GOTS wording on this tile.</p>
+          <p class="fiber">100% organic cotton</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Sky%20Organics%20Organic%20Cotton%20Rounds">Inquire</a>
+          </div>
+        </article>
+      </div>
+      <div class="brand-line">
+        <h3>Badger</h3>
+        <p>Official badgerbalm.com Active Mineral SPF 30. Zinc only. No USDA or EWG stamp — that opened PDP did not show one.</p>
+      </div>
+      <div class="grid">
+        <article class="card" id="badger-active-mineral-spf-30" data-beauty="spf">
+          <div class="photo">
+            <img src="/img/beauty/badger-active-mineral-spf-30.jpg" alt="Active Mineral Sunscreen Cream - SPF 30" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Active Mineral Sunscreen Cream - SPF 30</h3>
+          <p class="what">Badger — official Active Mineral SPF 30. Zinc oxide. 98% organic ingredients on that PDP. No USDA or EWG stamp on that opened page.</p>
+          <p class="fiber">zinc oxide · 98% organic ingredients</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Badger%20Active%20Mineral%20Sunscreen%20Cream%20-%20SPF%2030">Inquire</a>
+          </div>
+        </article>
+      </div>
+      <div class="brand-line">
+        <h3>Bush Medijina</h3>
+        <p>Official bushmedijina.com.au. Skin balm only. As labeled. No USDA Organic stamp on this balm. No Yaye.</p>
+      </div>
+      <div class="grid">
+        <article class="card" id="bush-medijina-miracle-balm" data-indigenous="yes" data-beauty="body">
+          <div class="photo">
+            <img src="/img/beauty/bush-medijina-miracle-balm.jpg" alt="Miracle Balm" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Miracle Balm</h3>
+          <p class="what">Bush Medijina — official Miracle Balm. Skin balm. As labeled. Wild-harvested Merrika on that PDP. Anindilyakwa women. Groote Eylandt. Indigenous social enterprise on that opened page. No USDA Organic tag on this balm — only the eucalyptus oil line names USDA, and that seal stays off this tile.</p>
+          <p class="fiber">skin balm · Anindilyakwa · Groote Eylandt · wild-harvested Merrika · not USDA Organic</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Bush%20Medijina%20Miracle%20Balm">Inquire</a>
+          </div>
+        </article>
+      </div>
+      <div class="brand-line">
+        <h3>doTERRA skin</h3>
+        <p>Official doterra.com. Skin and topical only on this aisle. CPTG is not USDA Organic. As labeled. Buy links use the official OwnerID sponsor parameter.</p>
+      </div>
+      <div class="grid">
+        <article class="card" id="doterra-verage" data-beauty="face">
+          <div class="photo">
+            <img src="/img/doterra/verage-collection.jpg" alt="Verage Skin Care Collection" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Verage Skin Care Collection</h3>
+          <p class="what">doTERRA — official Verage Skin Care Collection (item 42690001). Skin kit: Cleanser, Toner, Immortelle Hydrating Serum, Moisturizer. CPTG — not USDA Organic. As labeled.</p>
+          <p class="fiber">skin kit · CPTG — not USDA Organic</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <span>
+              <a class="card-link" href="https://www.doterra.com/US/en/p/personal-care-verage-skin-care-collection?OwnerID=125949" target="_blank" rel="noopener noreferrer">Buy</a>
+              ·
+              <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Verage%20Skin%20Care%20Collection%20%E2%80%94%20125949">Inquire</a>
+            </span>
+          </div>
+        </article>
+        <article class="card" id="doterra-verage-cleanser" data-beauty="face">
+          <div class="photo">
+            <img src="/img/doterra/verage-cleanser.jpg" alt="Verage Cleanser" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Verage Cleanser</h3>
+          <p class="what">doTERRA — official Verage Cleanser (item 37380001). Skin. CPTG — not USDA Organic. As labeled.</p>
+          <p class="fiber">skin · CPTG — not USDA Organic</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <span>
+              <a class="card-link" href="https://www.doterra.com/US/en/p/personal-care-verage-cleanser?OwnerID=125949" target="_blank" rel="noopener noreferrer">Buy</a>
+              ·
+              <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20Verage%20Cleanser%20%E2%80%94%20125949">Inquire</a>
+            </span>
+          </div>
+        </article>
+        <article class="card" id="doterra-hd-clear" data-beauty="face">
+          <div class="photo">
+            <img src="/img/doterra/hd-clear.jpg" alt="HD Clear Topical Blend" width="600" height="800" loading="lazy">
+          </div>
+          <h3>HD Clear Topical Blend</h3>
+          <p class="what">doTERRA — official HD Clear Topical Blend, 10 mL (item 49400001). Topical. CPTG — not USDA Organic. As labeled.</p>
+          <p class="fiber">topical · CPTG — not USDA Organic</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <span>
+              <a class="card-link" href="https://www.doterra.com/US/en/p/hd-clear-oil?OwnerID=125949" target="_blank" rel="noopener noreferrer">Buy</a>
+              ·
+              <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20HD%20Clear%20Topical%20Blend%20%E2%80%94%20125949">Inquire</a>
+            </span>
+          </div>
+        </article>
+        <article class="card" id="doterra-facial-cleanser" data-beauty="face">
+          <div class="photo">
+            <img src="/img/doterra/facial-cleanser.jpg" alt="Facial Cleanser" width="600" height="800" loading="lazy">
+          </div>
+          <h3>Facial Cleanser</h3>
+          <p class="what">doTERRA — official Facial Cleanser (item 60201753). Skin. Tea Tree and Peppermint on that PDP. CPTG — not USDA Organic. As labeled.</p>
+          <p class="fiber">skin · CPTG — not USDA Organic</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <span>
+              <a class="card-link" href="https://www.doterra.com/US/en/p/personal-care-facial-cleanser?OwnerID=125949" target="_blank" rel="noopener noreferrer">Buy</a>
+              ·
+              <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20doTERRA%20Facial%20Cleanser%20%E2%80%94%20125949">Inquire</a>
+            </span>
+          </div>
+        </article>
+        <article class="card" id="doterra-onguard-toothpaste" data-beauty="oral">
+          <div class="photo">
+            <img src="/img/doterra/onguard-toothpaste.jpg" alt="doTERRA On Guard Natural Whitening Toothpaste" width="600" height="800" loading="lazy">
+          </div>
+          <h3>doTERRA On Guard Natural Whitening Toothpaste</h3>
+          <p class="what">doTERRA — official On Guard Natural Whitening Toothpaste (item 60205476). Skin. CPTG — not USDA Organic. As labeled.</p>
+          <p class="fiber">skin · CPTG — not USDA Organic</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <span>
+              <a class="card-link" href="https://www.doterra.com/US/en/p/doterra-on-guard-natural-whitening-toothpaste?OwnerID=125949" target="_blank" rel="noopener noreferrer">Buy</a>
+              ·
+              <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20doTERRA%20On%20Guard%20Natural%20Whitening%20Toothpaste%20%E2%80%94%20125949">Inquire</a>
+            </span>
+          </div>
+        </article>
+        <article class="card" id="doterra-onguard-foaming-hand-wash-beauty" data-beauty="hands">
+          <div class="photo">
+            <img src="/img/doterra/onguard-hand-wash.jpg" alt="doTERRA On Guard Foaming Hand Wash" width="600" height="800" loading="lazy">
+          </div>
+          <h3>doTERRA On Guard Foaming Hand Wash</h3>
+          <p class="what">doTERRA — official On Guard Foaming Hand Wash (item 38010001). Skin. CPTG — not USDA Organic. As labeled.</p>
+          <p class="fiber">skin · CPTG — not USDA Organic</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <span>
+              <a class="card-link" href="https://www.doterra.com/US/en/p/doterra-on-guard-foaming-hand-wash?OwnerID=125949" target="_blank" rel="noopener noreferrer">Buy</a>
+              ·
+              <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20doTERRA%20On%20Guard%20Foaming%20Hand%20Wash%20%E2%80%94%20125949">Inquire</a>
+            </span>
+          </div>
+        </article>
+        <article class="card" id="doterra-onguard-sanitizing-mist-beauty" data-beauty="hands">
+          <div class="photo">
+            <img src="/img/doterra/onguard-mist.jpg" alt="doTERRA On Guard Hand Sanitizing Mist" width="600" height="800" loading="lazy">
+          </div>
+          <h3>doTERRA On Guard Hand Sanitizing Mist</h3>
+          <p class="what">doTERRA — official On Guard Hand Sanitizing Mist (item 60214044). Skin. CPTG — not USDA Organic. As labeled.</p>
+          <p class="fiber">skin · CPTG — not USDA Organic</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <span>
+              <a class="card-link" href="https://www.doterra.com/US/en/p/doterra-on-guard-sanitizing-mist?OwnerID=125949" target="_blank" rel="noopener noreferrer">Buy</a>
+              ·
+              <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20doTERRA%20On%20Guard%20Hand%20Sanitizing%20Mist%20%E2%80%94%20125949">Inquire</a>
+            </span>
+          </div>
+        </article>
+        <article class="card" id="doterra-onguard-hand-wash-kit" data-beauty="hands">
+          <div class="photo">
+            <img src="/img/doterra/on-guard-hand-wash-kit.jpg" alt="doTERRA On Guard Hand Wash Kit" width="600" height="800" loading="lazy">
+          </div>
+          <h3>doTERRA On Guard Hand Wash Kit</h3>
+          <p class="what">doTERRA — official On Guard Hand Wash Kit (item 60228890). Skin. Foaming hand wash plus dispenser. CPTG blend in the wash — not USDA Organic. As labeled.</p>
+          <p class="fiber">skin kit · CPTG — not USDA Organic</p>
+          <div class="row">
+            <span class="chip live">named</span>
+            <span>
+              <a class="card-link" href="https://www.doterra.com/US/en/p/on-guard-hand-wash-kit?OwnerID=125949" target="_blank" rel="noopener noreferrer">Buy</a>
+              ·
+              <a class="card-link" href="mailto:powerplantog@gmail.com?subject=EKOTOPIA%20inquiry%20%E2%80%94%20doTERRA%20On%20Guard%20Hand%20Wash%20Kit%20%E2%80%94%20125949">Inquire</a>
+            </span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <footer>
+      <p class="foot-brand">EKOTOPIA</p>
+      <ul>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/contact/">Contact</a></li>
+        <li><a href="mailto:realhealthiswealth@gmail.com">realhealthiswealth@gmail.com</a></li>
+        <li><a href="https://www.instagram.com/ekotopia.co/" target="_blank" rel="noopener noreferrer">Instagram @ekotopia.co</a></li>
+        <li><a href="/blog/did-you-know/">Journal</a></li>
+        <li>online only</li>
+        <li>no fake checkout</li>
+      </ul>
+    </footer>
+  </div>
+  <script src="/js/hashes.js"></script>
+  <script src="/js/site.js"></script>
+</body>
+</html>
