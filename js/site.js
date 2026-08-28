@@ -1,16 +1,17 @@
 (() => {
   const header = document.querySelector(".site-header");
+  const chrome = document.querySelector(".site-chrome") || header;
   const toggle = document.querySelector(".menu-toggle");
   const shop = document.querySelector(".nav-shop");
   const shopBtn = document.querySelector(".nav-shop-btn");
 
   const setHeaderH = () => {
-    if (!header) return;
-    document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
+    if (!chrome) return;
+    document.documentElement.style.setProperty("--header-h", chrome.offsetHeight + "px");
   };
   setHeaderH();
-  if (header && "ResizeObserver" in window) {
-    new ResizeObserver(setHeaderH).observe(header);
+  if (chrome && "ResizeObserver" in window) {
+    new ResizeObserver(setHeaderH).observe(chrome);
   }
   window.addEventListener("resize", setHeaderH);
 
