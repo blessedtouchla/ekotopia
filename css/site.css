@@ -344,6 +344,11 @@
       color: var(--live);
     }
 
+    .chip.incoming {
+      background: #f3e6d4;
+      color: var(--clay-deep);
+    }
+
     .card-link {
       color: var(--olive-deep);
       font-size: 0.86rem;
